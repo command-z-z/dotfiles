@@ -118,7 +118,7 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.bash_profile
+source ~/.bashrc
 
 alias mysql=/usr/local/mysql/bin/mysql
 alias ls='lsd'
