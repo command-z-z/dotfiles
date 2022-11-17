@@ -127,6 +127,7 @@ alias ra='TERM=xterm-256color ranger'
 alias raj='TERM=xterm-256color ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 alias lt="ls --tree"
 alias reload="source ~/.zshrc"
+alias cl="clear"
 
 # ranger 配置
 export RANGER_LOAD_DEFAULT_RC=FALSE
