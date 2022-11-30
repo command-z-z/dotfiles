@@ -97,7 +97,7 @@ This config folder include all my environment in My OS(Just cherry pick the piec
 
 And i will also write some tutorial in my blog(Live in Terminal Series).
 
-- [1.which Terminal is suitable for you?](./tutorial/1.which Terminal is suitable for you?.md)
+- [1.which Terminal is suitable for you?](./tutorial/1.which+Terminal+is+suitable+for+you?.md)
 - []()
 
 ### 🔨 Dependencies
@@ -125,6 +125,7 @@ bash ubuntu_install.sh
 ### 🚀 Manual Installation
 
 1.Clone this repository.
+
 `git clone https://github.com/command-z-z/dotfiles`
 
 2.Install the required software(see [Dependencies](#-dependencies)).
