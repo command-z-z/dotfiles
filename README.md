@@ -26,7 +26,9 @@
 <img src="./img/ohmyzsh-icon.png" width="34px">
 </p>
 <p align="center">
+<img src="./img/iterm2-icon.png" width="34px">
 <img src="./img/wezterm-icon.svg" width="34px">
+<img src="./img/kitty-icon.svg" width="37px">
 <img src="./img/neovim-icon.png" width="34px">
 <img src="./img/lazygit-icon.png" width="34px">
 <img src="./img/tmux-icon.png" width="34px">
@@ -39,7 +41,7 @@
 <p align="center"><b>Show My Favorite Wallpaper</b></p>
 
 <p align="center">
-<img src="./img/img1.gif" >
+<img src="./img/img1.gif" style="margin-top:30px">
 </p>
 
 ### 🧑🏾‍🎨 ScreenShot
@@ -71,15 +73,18 @@
 
 ### 🗒️ Info
 
-this config folder include all my environment in My OS.
+This config folder include all my environment in My OS(Just cherry pick the piece of code you totally understand).
 
 - Terminal [`Wezterm`](https://github.com/wez/wezterm) [`kitty`](https://github.com/kovidgoyal/kitty) [`iterm2`](https://github.com/gnachman/iTerm2)
-- File management tool [`ranger`](https://github.com/ranger/ranger)
 - Shell [`zsh`](https://www.zsh.org/)
 - Shell framework [`ohmyzsh`](https://github.com/ohmyzsh/ohmyzsh)
 - Shell theme [`starship`](https://github.com/starship/starship)
+- File management tool [`ranger`](https://github.com/ranger/ranger)
 - File find tool [`fzf`](https://github.com/junegunn/fzf)
 - Ls beautification tool [`lsd`](https://github.com/Peltoche/lsd)
+- Font [`HackNerdFont`](https://github.com/ryanoasis/nerd-fonts) [`JetBrainsMono`](https://github.com/JetBrains/JetBrainsMono) [`OperatorMono`](https://www.typography.com/fonts/operator/styles/multi) 
+- Theme [`Catppuccin`](https://github.com/catppuccin/catppuccin) [`dracula`](https://github.com/dracula/dracula-theme) [`Andromeda`](https://github.com/EliverLara/Andromeda)
+- System information tool [`neofetch`](https://github.com/dylanaraps/neofetch)
 - Terminal git tool [`lazygit`](https://github.com/jesseduffield/lazygit)
 - File editor tool [`nvim`](https://github.com/neovim/neovim)
 - Terminal multiplexing tool [`tmux`](https://github.com/tmux/tmux)
@@ -90,22 +95,42 @@ this config folder include all my environment in My OS.
 
 ### 💡 Tutorial
 
-And i will also write some tutorial in my blog
+And i will also write some tutorial in my blog(Live in Terminal Series).
 
+- [1.which Terminal is suitable for you?](./tutorial/1.which Terminal is suitable for you?.md)
 - []()
 
 ### 🔨 Dependencies
 #### Packages
+```
+# 安装终端
+brew install iTerm2
+brew install --cask kitty
+brew tap wez/wezterm
+brew install --cask wez/wezterm/wezterm
+```
 #### Fonts
+```
+# 安装HackNerdFont
+brew tap homebrew/cask-fonts
+brew install font-hack-nerd-font --cask
 
+# 安装JetBrainsMono
+brew tap homebrew/cask-fonts
+brew install --cask font-jetbrains-mono
+
+# 一键安装(仅验证ubuntu)
+bash ubuntu_install.sh
+```
 ### 🚀 Manual Installation
 
-# Brew packages
-```
-brew install fzf the_silver_searcher ripgrep fd
-brew install automake wget gcc gdb bat ccat tree git-delta git-flow git rainbarf jsdoc3 cmake gnu-getopt gnu-sed node go
-brew install ccls tmux neovim jesseduffield/lazygit/lazygit
-brew install awscli gh tldr
-brew install speedtest-cli ncdu neofetch onefetch bmon loc
-```
+1.Clone this repository.
+`git clone https://github.com/command-z-z/dotfiles`
 
+2.Install the required software(see [Dependencies](#-dependencies)).
+
+3.See my tutorial to learn more about my config.
+
+4.Just copy the piece of code you really want.
+
+### 🤖 Notes

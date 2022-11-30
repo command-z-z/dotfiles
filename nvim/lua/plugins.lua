@@ -12,16 +12,6 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup({
 	function()
 		use 'wbthomason/packer.nvim'-- Packer can manage itself
-		-- 状态栏插件
-		--[[ use {
-			"vim-airline/vim-airline",
-			requires = {
-				"vim-airline/vim-airline-themes",
-				--综合图标支持such vim-airline lightline, vim-startify
-				"ryanoasis/vim-devicons"
-			}
-		} ]]
-
 		--新状态栏插件
 		use {
 			"nvim-lualine/lualine.nvim",
@@ -84,7 +74,6 @@ return require('packer').startup({
 		-- 自动为尚不支持 Neovim 0.5 内置 lsp 客户端的配色方案创建缺少的 LSP 诊断突出显示组。
 		use "folke/lsp-colors.nvim"
 		-- 基于neovim 内置lsp 的轻量级lsp 插件，具有高性能UI。非常酷, 后面换成了glepnir的插件
-		-- use { 'tami5/lspsaga.nvim', branch = 'nvim6.0' or 'nvim51' } -- for specific version
         use { "glepnir/lspsaga.nvim", branch = "main"}
 		--符号自动找对象
 		-- 显示css的颜色代码的颜色
@@ -131,10 +120,9 @@ return require('packer').startup({
 		-- leedcode
 		use 'ianding1/leetcode.vim'
 		-- 启动页面
-		-- use 'mhinz/vim-startify'
         use 'glepnir/dashboard-nvim'
 		-- 对齐页面
-		use 'Yggdroot/indentLine' 
+		use 'Yggdroot/indentLine'
 		-- 打标签
 		use 'MattesGroeger/vim-bookmarks'
 		-- telescope查询标签支持
@@ -154,7 +142,7 @@ return require('packer').startup({
 	config = {
 		max_jobs = 16,
 		git = {
-			default_url_format = 'https://github.91chi.fun/https://github.com/%s' 
+			default_url_format = 'https://github.91chi.fun/https://github.com/%s'
 		},
 		display = {
 			open_fn = function()

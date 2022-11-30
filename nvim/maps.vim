@@ -41,9 +41,9 @@ inoremap <C-d> <Delete>
 " jk <Esc>
 inoremap jk <Esc>
 " 插入模式鼠标滚轮抵消,不然会出现滚动鼠标录入了一堆5j5k
-inoremap 5k <Esc>
-inoremap 5j <Esc>
-inoremap 9<CR> <Esc>a
+" inoremap 5k <Esc>
+" inoremap 5j <Esc>
+" inoremap 9<CR> <Esc>a
 " 快速跳转行首与行尾  
 nnoremap L $
 nnoremap H ^
@@ -51,10 +51,11 @@ nnoremap H ^
 noremap <C-j> 5j
 " 向上5行
 noremap <C-k> 5k
+noremap <C-h> 5h
+noremap <C-l> 5l
 " 保 存
 noremap s :w<CR>
 " Coc智能处理，使用IDEA Alt+Enter 同样按键
-"noremap <M-Enter> :CocAction<CR>
 inoremap <C-s> <ESC> :w<CR>
 " 代码格式化
 noremap <leader>f :Format<CR> 
@@ -90,9 +91,9 @@ inoremap <C-d> <Delete>
 " jk <Esc>
 inoremap jk <Esc>
 " 插入模式鼠标滚轮抵消,不然会出现滚动鼠标录入了一堆5j5k
-inoremap 5k <Esc>
-inoremap 5j <Esc>
-inoremap 9<CR> <Esc>a
+" inoremap 5k <Esc>
+" inoremap 5j <Esc>
+" inoremap 9<CR> <Esc>a
 " 快速跳转行首与行尾  
 nnoremap L $
 nnoremap H ^
