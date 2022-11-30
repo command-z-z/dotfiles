@@ -73,7 +73,7 @@
 
 this config folder include all my environment in My OS.
 
-- Terminal [`Wezterm`](https://github.com/wez/wezterm)
+- Terminal [`Wezterm`](https://github.com/wez/wezterm) [`kitty`](https://github.com/kovidgoyal/kitty) [`iterm2`](https://github.com/gnachman/iTerm2)
 - File management tool [`ranger`](https://github.com/ranger/ranger)
 - Shell [`zsh`](https://www.zsh.org/)
 - Shell framework [`ohmyzsh`](https://github.com/ohmyzsh/ohmyzsh)
