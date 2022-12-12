@@ -97,11 +97,11 @@ This config folder include all my environment in My OS(Just cherry pick the piec
 
 And i will also write some tutorial in my blog(Live in Terminal Series).
 
-- [1.which Terminal is suitable for you?](./tutorial/1.which+Terminal+is+suitable+for+you?.md)
+- [1.which Terminal is suitable for you?](./tutorial/1.which%20Terminal%20is%20suitable%20for%20you%3F.md)
 - []()
 
 ### 🔨 Dependencies
-#### Packages
+#### 📦 Packages
 ```
 # 安装终端
 brew install iTerm2
@@ -109,7 +109,7 @@ brew install --cask kitty
 brew tap wez/wezterm
 brew install --cask wez/wezterm/wezterm
 ```
-#### Fonts
+#### ✍️ Fonts
 ```
 # 安装HackNerdFont
 brew tap homebrew/cask-fonts
@@ -126,7 +126,9 @@ bash ubuntu_install.sh
 
 1.Clone this repository.
 
-`git clone https://github.com/command-z-z/dotfiles`
+```
+git clone https://github.com/command-z-z/dotfiles
+```
 
 2.Install the required software(see [Dependencies](#-dependencies)).
 
