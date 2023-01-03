@@ -137,3 +137,9 @@ git clone https://github.com/command-z-z/dotfiles
 4.Just copy the piece of code you really want.
 
 ### 🤖 Notes
+neovim python dependencies.
+```
+pip install neovim
+pip install pyvim
+pip install Ranger-fm
+```
