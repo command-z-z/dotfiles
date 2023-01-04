@@ -1,5 +1,5 @@
-local statue, lualine = pcall(require, "lualine")
-if not statue then
+local present, lualine = pcall(require, "lualine")
+if not present then
 	return
 end
 

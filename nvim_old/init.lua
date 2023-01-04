@@ -6,4 +6,3 @@ require('plugins')
 require('mappings')
 -- 配置主题
 require('colors.catppuccin')
-

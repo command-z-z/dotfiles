@@ -6,4 +6,9 @@ ls.config.set_config({
 	updateevents = "TextChanged,TextChangedI",
 })
 
-require("luasnip/loaders/from_vscode").lazy_load() -- You can pass { paths = "./my-snippets/"} as well
+require("luasnip/loaders/from_vscode").lazy_load()
+-- require("luasnip/loaders/from_vscode").load() -- You can pass { paths = "./my-snippets/"} as well
+--[[ require('luasnip/loaders/from_vscode').lazy_load({
+    paths = { './snippets/' },
+  }) ]]
+

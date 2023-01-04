@@ -159,15 +159,20 @@ _G.packer_plugins = {
     path = "/home/yjzhang/.local/share/nvim/site/pack/packer/start/gruvbox-material",
     url = "https://github.91chi.fun/https://github.com/sainnhe/gruvbox-material"
   },
-  ["indent-blankline.nvim"] = {
+  indentLine = {
     loaded = true,
-    path = "/home/yjzhang/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
-    url = "https://github.91chi.fun/https://github.com/lukas-reineke/indent-blankline.nvim"
+    path = "/home/yjzhang/.local/share/nvim/site/pack/packer/start/indentLine",
+    url = "https://github.91chi.fun/https://github.com/Yggdroot/indentLine"
   },
   kommentary = {
     loaded = true,
     path = "/home/yjzhang/.local/share/nvim/site/pack/packer/start/kommentary",
     url = "https://github.91chi.fun/https://github.com/b3nj5m1n/kommentary"
+  },
+  ["lsp-colors.nvim"] = {
+    loaded = true,
+    path = "/home/yjzhang/.local/share/nvim/site/pack/packer/start/lsp-colors.nvim",
+    url = "https://github.91chi.fun/https://github.com/folke/lsp-colors.nvim"
   },
   ["lspkind-nvim"] = {
     loaded = true,
@@ -189,17 +194,8 @@ _G.packer_plugins = {
     path = "/home/yjzhang/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim",
     url = "https://github.91chi.fun/https://github.com/iamcco/markdown-preview.nvim"
   },
-  ["mason-lspconfig.nvim"] = {
-    loaded = true,
-    path = "/home/yjzhang/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
-    url = "https://github.91chi.fun/https://github.com/williamboman/mason-lspconfig.nvim"
-  },
-  ["mason.nvim"] = {
-    loaded = true,
-    path = "/home/yjzhang/.local/share/nvim/site/pack/packer/start/mason.nvim",
-    url = "https://github.91chi.fun/https://github.com/williamboman/mason.nvim"
-  },
   neogen = {
+    config = { "\27LJ\2\n8\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\vneogen\frequire\0" },
     loaded = true,
     path = "/home/yjzhang/.local/share/nvim/site/pack/packer/start/neogen",
     url = "https://github.91chi.fun/https://github.com/danymat/neogen"
@@ -219,6 +215,11 @@ _G.packer_plugins = {
     path = "/home/yjzhang/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.91chi.fun/https://github.com/hrsh7th/nvim-cmp"
   },
+  ["nvim-lsp-installer"] = {
+    loaded = true,
+    path = "/home/yjzhang/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
+    url = "https://github.91chi.fun/https://github.com/williamboman/nvim-lsp-installer"
+  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/home/yjzhang/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
@@ -230,8 +231,9 @@ _G.packer_plugins = {
     url = "https://github.91chi.fun/https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
-    loaded = true,
-    path = "/home/yjzhang/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/yjzhang/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
     url = "https://github.91chi.fun/https://github.com/nvim-tree/nvim-web-devicons"
   },
   ["packer.nvim"] = {
@@ -284,6 +286,11 @@ _G.packer_plugins = {
     path = "/home/yjzhang/.local/share/nvim/site/pack/packer/start/vim-choosewin",
     url = "https://github.91chi.fun/https://github.com/t9md/vim-choosewin"
   },
+  ["vim-css-color"] = {
+    loaded = true,
+    path = "/home/yjzhang/.local/share/nvim/site/pack/packer/start/vim-css-color",
+    url = "https://github.91chi.fun/https://github.com/ap/vim-css-color"
+  },
   ["vim-floaterm"] = {
     loaded = true,
     path = "/home/yjzhang/.local/share/nvim/site/pack/packer/start/vim-floaterm",
@@ -307,6 +314,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: neogen
+time([[Config for neogen]], true)
+try_loadstring("\27LJ\2\n8\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\vneogen\frequire\0", "config", "neogen")
+time([[Config for neogen]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

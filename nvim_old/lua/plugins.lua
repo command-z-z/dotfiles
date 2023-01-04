@@ -43,11 +43,10 @@ return require('packer').startup({
             run = function() vim.fn["mkdp#util#install"]() end,
         })
 		--lsp
-        use {
-            "neovim/nvim-lspconfig",
-            "williamboman/mason.nvim",
-            "williamboman/mason-lspconfig.nvim",
-        }
+		use {
+			'neovim/nvim-lspconfig',
+			'williamboman/nvim-lsp-installer',
+		}
 		--Nvim LSP 客户端的快速入门配置
 		use {
 			"hrsh7th/nvim-cmp",
@@ -72,8 +71,14 @@ return require('packer').startup({
 				"rafamadriz/friendly-snippets" --代码段合集
 			}
 		}
+		--lspUI美化
+		-- 自动为尚不支持 Neovim 0.5 内置 lsp 客户端的配色方案创建缺少的 LSP 诊断突出显示组。
+		use "folke/lsp-colors.nvim"
 		-- 基于neovim 内置lsp 的轻量级lsp 插件，具有高性能UI。非常酷, 后面换成了glepnir的插件
         use { "glepnir/lspsaga.nvim", branch = "main"}
+		--符号自动找对象
+		-- 显示css的颜色代码的颜色
+		use "ap/vim-css-color"
 		-- 符号自动匹配，比如：输入(自动闭合）
         use "windwp/nvim-autopairs"
 		--模糊搜索
@@ -99,15 +104,18 @@ return require('packer').startup({
 		use 'voldikss/vim-floaterm'
 		--快速运行
 		use 'thinca/vim-quickrun'
-		-- 代码write注释
+		-- 代码注释
 		use {
 			"danymat/neogen",
+			config = function()
+				require('neogen').setup {}
+			end,
 			requires = "nvim-treesitter/nvim-treesitter",
 		}
 		-- 启动页面
         use 'glepnir/dashboard-nvim'
 		-- 对齐页面
-        use 'lukas-reineke/indent-blankline.nvim'
+		use 'Yggdroot/indentLine'
 		-- 打标签
 		use 'MattesGroeger/vim-bookmarks'
 		-- telescope查询标签支持

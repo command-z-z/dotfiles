@@ -3,18 +3,15 @@ if (not status) then
 	return
 end
 
-local fb_actions = require('telescope').extensions.file_browser.actions
 require("telescope").setup {
 	defaults = {
-        -- prompt_prefix = '🔭 ',
-        prompt_prefix = '🔎 ',
-        selection_caret = ' ',
 		mappings = {
 			n = {
 				["q"] = actions.close,
 				["l"] = actions.file_edit,
 			}
 		},
+		file_ignore_patterns = {"./node_modules"}
 	},
 	extensions = {
 		fzf = {
@@ -32,17 +29,6 @@ require("telescope").setup {
                     -- your custom insert mode mappings
                 },
                 ["n"] = {
-                    ['T'] = fb_actions.create,
-                    ['a'] = fb_actions.rename,
-                    ['dD'] = fb_actions.remove,
-                    ['o'] = fb_actions.open,
-                    ['h'] = fb_actions.goto_parent_dir,
-                    ['l'] = fb_actions.change_cwd,
-                    ['yy'] = fb_actions.copy,
-                    ['dd'] = fb_actions.move,
-                    ['gh'] = fb_actions.goto_home_dir,
-                    ['vv'] = fb_actions.select_all,
-                    ["backspace"] = fb_actions.toggle_hidden,
                     -- your custom normal mode mappings
                 },
             },
