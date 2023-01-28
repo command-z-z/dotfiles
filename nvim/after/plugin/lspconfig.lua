@@ -11,6 +11,17 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     }
   }
 )
+--[[ vim.diagnostic.config({
+  signs = true,
+  update_in_insert = false,
+  underline = true,
+  severity_sort = true,
+  virtual_text = {
+    prefix = '🔥',
+    source = true,
+  },
+}) ]]
+
 
 local signs = {
     { name = "DiagnosticSignError", text = "" },

@@ -3,18 +3,18 @@ if (not status) then
 	return
 end
 
---local actions = require('telescope.actions')
--- Global remapping
-------------------------------
+local fb_actions = require('telescope').extensions.file_browser.actions
 require("telescope").setup {
 	defaults = {
+        -- prompt_prefix = '🔭 ',
+        prompt_prefix = '🔎 ',
+        selection_caret = ' ',
 		mappings = {
 			n = {
 				["q"] = actions.close,
 				["l"] = actions.file_edit,
 			}
 		},
-		file_ignore_patterns = {"./node_modules"}
 	},
 	extensions = {
 		fzf = {
@@ -22,17 +22,27 @@ require("telescope").setup {
 			override_generic_sorter = true, -- override the generic sorter
 			override_file_sorter = true, -- override the file sorter
 			case_mode = "smart_case" -- or "ignore_case" or "respect_case"
-			-- the default case_mode is "smart_case"
 		},
         file_browser = {
-            theme = "ivy",
-            -- disables netrw and use telescope-file-browser in its place
+            theme = "dropdown",
+			previewer = false, -- override the file sorter
             hijack_netrw = true,
             mappings = {
                 ["i"] = {
                     -- your custom insert mode mappings
                 },
                 ["n"] = {
+                    ['T'] = fb_actions.create,
+                    ['a'] = fb_actions.rename,
+                    ['dD'] = fb_actions.remove,
+                    ['o'] = fb_actions.open,
+                    ['h'] = fb_actions.goto_parent_dir,
+                    ['l'] = fb_actions.change_cwd,
+                    ['yy'] = fb_actions.copy,
+                    ['dd'] = fb_actions.move,
+                    ['gh'] = fb_actions.goto_home_dir,
+                    ['vv'] = fb_actions.select_all,
+                    ["backspace"] = fb_actions.toggle_hidden,
                     -- your custom normal mode mappings
                 },
             },
@@ -42,23 +52,25 @@ require("telescope").setup {
 		find_files = {
 			theme =  "dropdown", -- override the generic sorter
 			previewer = false -- override the file sorter
-		}
+		},
+        oldfiles = {
+			theme =  "dropdown", -- override the generic sorter
+			previewer = false -- override the file sorter
+        }
 	}
 }
 
 -- To get fzf loaed and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
-require("telescope").load_extension("fzf")
+require('telescope').load_extension('fzf')
 require('telescope').load_extension('vim_bookmarks')
-require("telescope").load_extension "file_browser"
--- require('telescope').load_extension('dap')
+require("telescope").load_extension("file_browser")
 
 --按键设置
 vim.api.nvim_set_keymap("n", "<leader>ff", [[<cmd>lua require('telescope.builtin').find_files()<cr>]], {})
 vim.api.nvim_set_keymap("n", "<leader>fg", [[<cmd>lua require('telescope.builtin').live_grep()<cr>]], {})
--- vim.api.nvim_set_keymap("n", "<leader>fb", [[<cmd>lua require('telescope.builtin').buffers()<cr>]], {})
 vim.api.nvim_set_keymap("n", "<leader>fh", [[<cmd>lua require('telescope.builtin').help_tags()<cr>]], {})
 vim.api.nvim_set_keymap("n", "<leader>ma", [[<cmd>Telescope vim_bookmarks current_file<cr>]], {})
 vim.api.nvim_set_keymap("n", "<leader>mA", [[<cmd>Telescope vim_bookmarks all<cr>]], {})
-vim.api.nvim_set_keymap("n", "<leader>fo", [[<cmd>Telescope oldfiles theme=dropdown previewer=false<cr>]], {})
+vim.api.nvim_set_keymap("n", "<leader>fo", [[<cmd>Telescope oldfiles<cr>]], {})
 vim.api.nvim_set_keymap("n", "<leader>fb", [[<cmd>Telescope file_browser<cr>]], {})

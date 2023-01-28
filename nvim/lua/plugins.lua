@@ -1,10 +1,8 @@
----@diagnostic disable: undefined-global
 --在没有安装packer的电脑上，自动安装packer插件
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
 	fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})	--默认地址
-	-- fn.system({'git', 'clone', '--depth', '1', 'https://codechina.csdn.net/mirrors/wbthomason/packer.nvim.git', install_path})	--csdn加速镜像
 	vim.cmd 'packadd packer.nvim'
 end
 -- Only required if you have packer configured as `opt`
@@ -12,20 +10,19 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup({
 	function()
 		use 'wbthomason/packer.nvim'-- Packer can manage itself
+
+        use 'nvim-tree/nvim-web-devicons'
 		--新状态栏插件
 		use {
 			"nvim-lualine/lualine.nvim",
-			requires = {"kyazdani42/nvim-web-devicons", opt = true}
+			requires = {"nvim-tree/nvim-web-devicons", opt = true}
 		}
 		-- bufferline 显示标签页,与lualine配合使用
-		use "akinsho/bufferline.nvim"
+        use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
 
 		-- 主题
-		use "sainnhe/gruvbox-material"
-        use 'folke/tokyonight.nvim'
-        use 'Mofiqul/vscode.nvim'
         use 'shaunsingh/nord.nvim'
-        use 'glepnir/zephyr-nvim'
+        use { "catppuccin/nvim", as = "catppuccin" }
 		-- ranger
 		use "kevinhwang91/rnvimr"
 		-- 文件管理插件，类似与ranger。
@@ -42,10 +39,11 @@ return require('packer').startup({
             run = function() vim.fn["mkdp#util#install"]() end,
         })
 		--lsp
-		use {
-			'neovim/nvim-lspconfig',
-			'williamboman/nvim-lsp-installer',
-		}
+        use {
+            "neovim/nvim-lspconfig",
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
+        }
 		--Nvim LSP 客户端的快速入门配置
 		use {
 			"hrsh7th/nvim-cmp",
@@ -70,26 +68,19 @@ return require('packer').startup({
 				"rafamadriz/friendly-snippets" --代码段合集
 			}
 		}
-		--lspUI美化
-		-- 自动为尚不支持 Neovim 0.5 内置 lsp 客户端的配色方案创建缺少的 LSP 诊断突出显示组。
-		use "folke/lsp-colors.nvim"
 		-- 基于neovim 内置lsp 的轻量级lsp 插件，具有高性能UI。非常酷, 后面换成了glepnir的插件
         use { "glepnir/lspsaga.nvim", branch = "main"}
-		--符号自动找对象
-		-- 显示css的颜色代码的颜色
-		use "ap/vim-css-color"
 		-- 符号自动匹配，比如：输入(自动闭合）
-		use "windwp/nvim-autopairs"
+        use "windwp/nvim-autopairs"
 		--模糊搜索
 		use {
 			"nvim-telescope/telescope.nvim",
 			requires = {
 				"nvim-lua/plenary.nvim",
-				"kyazdani42/nvim-web-devicons"
+				"nvim-tree/nvim-web-devicons"
 			}
 		}
 		-- 加速文件搜索速度,如果安装失败需要到插件目录执行make命令手动编译
-		-- 用了这个插件以后，貌似更快了(感觉输入更跟手了，可能是心理作用)。但是对于我的小项目感受不是很明显
 		use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
         -- file browser
         use {"nvim-telescope/telescope-file-browser.nvim" }
@@ -98,52 +89,42 @@ return require('packer').startup({
 			'nvim-treesitter/nvim-treesitter',
 			run = ':TSUpdate'
 		}
-		--彩虹括号
-		use 'luochen1990/rainbow'
 		--注释插件
 		use "b3nj5m1n/kommentary"
-		--悬浮终端
-		use 'voldikss/vim-floaterm'
-
 		--快速运行
 		use 'thinca/vim-quickrun'
-		-- 代码注释
+		-- 代码write注释
 		use {
 			"danymat/neogen",
-			config = function()
-				require('neogen').setup {}
-			end,
 			requires = "nvim-treesitter/nvim-treesitter",
-			-- Uncomment next line if you want to follow only stable versions
-			-- tag = "*"
 		}
-		-- leedcode
-		use 'ianding1/leetcode.vim'
 		-- 启动页面
         use 'glepnir/dashboard-nvim'
 		-- 对齐页面
-		use 'Yggdroot/indentLine'
+        use 'lukas-reineke/indent-blankline.nvim'
 		-- 打标签
 		use 'MattesGroeger/vim-bookmarks'
 		-- telescope查询标签支持
 		use "tom-anders/telescope-vim-bookmarks.nvim"
-		-- 文件大纲	
-	    use	'simrat39/symbols-outline.nvim'
-		-- 翻译
-		use 'voldikss/vim-translator'
-        -- latex
-        use 'lervag/vimtex'
-        -- 调试工具
-        use 'mfussenegger/nvim-dap'
-        use 'mfussenegger/nvim-dap-python'
-        use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
-        use 'theHamsta/nvim-dap-virtual-text'
+        -- git 
+        use {
+            'lewis6991/gitsigns.nvim'
+        }
+        -- tool
+        use {
+            "folke/trouble.nvim",
+            requires = "nvim-tree/nvim-web-devicons",
+        }
+        use {
+            "folke/todo-comments.nvim",
+            requires = "nvim-lua/plenary.nvim",
+        }
 	end,
 	config = {
 		max_jobs = 16,
-		git = {
+		--[[ git = {
 			default_url_format = 'https://github.91chi.fun/https://github.com/%s'
-		},
+		}, ]]
 		display = {
 			open_fn = function()
 				return require('packer.util').float({ border = 'single' })

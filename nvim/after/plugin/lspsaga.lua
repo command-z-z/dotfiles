@@ -14,18 +14,13 @@ saga.init_lsp_saga({
     -- use emoji like
     -- { "🙀", "😿", "😾", "😺" }
     -- or
-    -- { "😡", "😥", "😤", "😐" }
+    -- diagnostic_header = { "😡", "😥", "😤", "😐" },
     -- and diagnostic_header can be a function type
     -- must return a string and when diagnostic_header
     -- is function type it will have a param `entry`
     -- entry is a table type has these filed
     -- { bufnr, code, col, end_col, end_lnum, lnum, message, severity, source }
-    diagnostic_header = { "", " ", " ", "ﴞ " },
-    -- diagnostic_header = { "😡", "😥", "😤", "😐" },
-    -- show diagnostic source
-    show_diagnostic_source = true,
-    -- add bracket or something with diagnostic source, just have 2 elements
-    diagnostic_source_bracket = {},
+    diagnostic_header = { " ", " ", " ", "ﴞ " },
     -- preview lines of lsp_finder and definition preview
     max_preview_lines = 10,
     -- use emoji lightbulb in default
@@ -35,8 +30,10 @@ saga.init_lsp_saga({
     -- same as nvim-lightbulb but async
     code_action_lightbulb = {
         enable = true,
-        sign = true,
         enable_in_insert = true,
+        cache_code_action = true,
+        sign = true,
+        update_time = 150,
         sign_priority = 20,
         virtual_text = true,
     },
@@ -56,22 +53,34 @@ saga.init_lsp_saga({
         split = "i",
         tabe = "t",
         quit = "q",
-        scroll_down = "<C-f>",
-        scroll_up = "<C-b>", -- quit can be a table
     },
     code_action_keys = {
         quit = "q",
         exec = "<CR>",
     },
+    definition_action_keys = {
+        edit = '<C-c>o',
+        vsplit = '<C-c>v',
+        split = '<C-c>i',
+        tabe = '<C-c>t',
+        quit = 'q',
+    },
     rename_action_quit = "<C-c>",
     rename_in_select = true,
-    definition_preview_icon = "  ",
     -- show symbols in winbar must nightly
+    -- in_custom mean use lspsaga api to get symbols
+    -- and set it to your custom winbar or some winbar plugins.
+    -- if in_cusomt = true you must set in_enable to false
     symbol_in_winbar = {
         in_custom = false,
         enable = true,
         separator = ' ',
         show_file = true,
+        -- define how to customize filename, eg: %:., %
+        -- if not set, use default value `%:t`
+        -- more information see `vim.fn.expand` or `expand`
+        -- ## only valid after set `show_file = true`
+        file_formatter = "",
         click_support = false,
     },
     -- show outline
@@ -94,23 +103,26 @@ saga.init_lsp_saga({
     -- if you don't use nvim-lspconfig you must pass your server name and
     -- the related filetypes into this table
     -- like server_filetype_map = { metals = { "sbt", "scala" } }
-    server_filetype_map = {},   
+    server_filetype_map = {},
 })
 
 -- Lsp finder find the symbol definition implement reference
+-- if there is no implement it will hide
 -- when you use action in finder like open vsplit then you can
 -- use <C-t> to jump back
 keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
 
 -- Code action
-keymap("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true })
-keymap("v", "<leader>ca", "<cmd><C-U>Lspsaga range_code_action<CR>", { silent = true })
+keymap({"n","v"}, "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true })
 
 -- Rename
 keymap("n", "gr", "<cmd>Lspsaga rename<CR>", { silent = true })
 
--- Definition preview
-keymap("n", "gd", "<cmd>Lspsaga preview_definition<CR>", { silent = true })
+-- Peek Definition
+-- you can edit the definition file in this flaotwindow
+-- also support open/vsplit/etc operation check definition_action_keys
+-- support tagstack C-t jump back
+keymap("n", "gd", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
 
 -- Show line diagnostics
 keymap("n", "<leader>cd", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true })
@@ -119,8 +131,8 @@ keymap("n", "<leader>cd", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = t
 keymap("n", "<leader>cd", "<cmd>Lspsaga show_cursor_diagnostics<CR>", { silent = true })
 
 -- Diagnsotic jump can use `<c-o>` to jump back
-keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })
-keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
+keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
+keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })
 
 -- Only jump to error
 keymap("n", "[E", function()
@@ -131,20 +143,15 @@ keymap("n", "]E", function()
 end, { silent = true })
 
 -- Outline
-keymap("n","<leader>o", "<cmd>LSoutlineToggle<CR>",{ silent = true })
+keymap("n","<leader>o", "<cmd>Lspsaga outline<CR>",{ silent = true })
 
 -- Hover Doc
 keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
 
-local action = require("lspsaga.action")
--- scroll in hover doc or  definition preview window
-vim.keymap.set("n", "<C-f>", function()
-    action.smart_scroll_with_saga(1)
-end, { silent = true })
--- scroll in hover doc or  definition preview window
-vim.keymap.set("n", "<C-b>", function()
-    action.smart_scroll_with_saga(-1)
-end, { silent = true })
--- or use command
-vim.keymap.set("n", "<A-d>", "<cmd>Lspsaga open_floaterm<CR>", { silent = true })
-vim.keymap.set("t", "<A-d>", "<C-\\><C-n><cmd>Lspsaga close_floaterm<CR>", { silent = true })
+-- Float terminal
+keymap("n", "<A-d>", "<cmd>Lspsaga open_floaterm<CR>", { silent = true })
+-- if you want pass somc cli command into terminal you can do like this
+-- open lazygit in lspsaga float terminal
+-- keymap("n", "<A-d>", "<cmd>Lspsaga open_floaterm lazygit<CR>", { silent = true })
+-- close floaterm
+keymap("t", "<A-d>", [[<C-\><C-n><cmd>Lspsaga close_floaterm<CR>]], { silent = true })
