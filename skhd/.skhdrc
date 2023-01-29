@@ -1,0 +1,140 @@
+# Create space on the active display
+ctrl + alt - n : yabai -m space --create
+# Delete focused space and focus first space on display
+ctrl + alt - d : yabai -m space --destroy
+##############################################
+# Navigation (focussing)
+##############################################
+
+# Windows: Alt + [DIR]
+shift + alt - h : yabai -m window --focus west
+shift + alt - j : yabai -m window --focus south
+shift + alt - k : yabai -m window --focus north
+shift + alt - l : yabai -m window --focus east
+
+# find main editor region
+alt - n : yabai -m window --focus largest
+
+# Spaces:  Alt + [NUM]
+alt - 1 : yabai -m space --focus 1
+alt - 2 : yabai -m space --focus 2
+alt - 3 : yabai -m space --focus 3
+alt - 4 : yabai -m space --focus 4
+alt - 5 : yabai -m space --focus 5
+alt - 6 : yabai -m space --focus 6
+
+# Monitors: Ctrl + Alt + [NUM]
+ctrl + alt - 1  : yabai -m display --focus 1
+ctrl + alt - 2  : yabai -m display --focus 2
+
+##############################################
+# Moving
+##############################################
+
+# "Swaps" with another Window, obtaining its size and position
+# Swap: Ctrl + Alt + [DIR]
+ctrl + alt - h : yabai -m window --swap west
+ctrl + alt - j : yabai -m window --swap south
+ctrl + alt - k : yabai -m window --swap north
+ctrl + alt - l : yabai -m window --swap east
+
+# Sends Window to Space and shifts focus
+# Send: Shift + Cmd + [NUM]
+shift + cmd - 1 : yabai -m window --space  1; yabai -m space --focus 1; sketchybar --trigger windows_on_spaces
+shift + cmd - 2 : yabai -m window --space  2; yabai -m space --focus 2; sketchybar --trigger windows_on_spaces
+shift + cmd - 3 : yabai -m window --space  3; yabai -m space --focus 3; sketchybar --trigger windows_on_spaces
+shift + cmd - 4 : yabai -m window --space  4; yabai -m space --focus 4; sketchybar --trigger windows_on_spaces
+shift + cmd - 5 : yabai -m window --space  5; yabai -m space --focus 5; sketchybar --trigger windows_on_spaces
+shift + cmd - 6 : yabai -m window --space  6; yabai -m space --focus 6; sketchybar --trigger windows_on_spaces
+shift + cmd - 7 : yabai -m window --space  7; yabai -m space --focus 7; sketchybar --trigger windows_on_spaces
+shift + cmd - 8 : yabai -m window --space  8; yabai -m space --focus 8; sketchybar --trigger windows_on_spaces
+
+# Sends Window to Monitor and shifts focus
+# Send Monitor: Ctrl + Cmd + [NUM]
+ctrl + cmd - 1  : yabai -m window --display 1; yabai -m display --focus 1
+ctrl + cmd - 2  : yabai -m window --display 2; yabai -m display --focus 2
+
+# Floating Move
+shift + ctrl - a : yabai -m window --move rel:-20:0
+shift + ctrl - s : yabai -m window --move rel:0:20
+shift + ctrl - w : yabai -m window --move rel:0:-20
+shift + ctrl - d : yabai -m window --move rel:20:0
+
+# Rotate
+alt - r : yabai -m space --rotate 90
+
+##############################################
+# Sizing: Shift + [Alt/Cmd] + [DIR]
+##############################################
+
+# Auto
+shift + alt - 0 : yabai -m space --balance
+
+# Increase (no decrease options, just resizing the relevant windows)
+shift + alt - a : yabai -m window --resize left:-40:0
+shift + alt - s : yabai -m window --resize bottom:0:40
+shift + alt - w : yabai -m window --resize top:0:-40
+shift + alt - d : yabai -m window --resize right:40:0
+
+##############################################
+# Toggling
+##############################################
+
+# Fullscreen (still includes gaps)
+alt - f : yabai -m window --toggle zoom-fullscreen;\
+          sketchybar --trigger window_focus
+
+shift + alt - f : yabai -m window --toggle native-fullscreen
+
+# Float and center
+alt - t : yabai -m window --toggle float;\
+          yabai -m window --grid 4:4:1:1:2:2;\
+          sketchybar --trigger window_focus
+
+# Float and right up for bilibili music
+alt - y : yabai -m window --toggle float;\
+          yabai -m window --grid 5:5:3:0:1:1;\
+          yabai -m window --move rel:-2:2;\
+          sketchybar --trigger window_focus
+
+# Float and right up for cava music
+alt - u : yabai -m window --toggle float;\
+          yabai -m window --grid 5:5:4:0:1:1;\
+          yabai -m window --move rel:-2:2;\
+          sketchybar --trigger window_focus
+
+alt - h : yabai -m window --toggle float;\
+          yabai -m window --grid 5:5:3:1:1:1;\
+          yabai -m window --move rel:-2:2;\
+          sketchybar --trigger window_focus
+
+alt - j : yabai -m window --toggle float;\
+          yabai -m window --grid 5:5:4:1:1:1;\
+          yabai -m window --move rel:-2:2;\
+          sketchybar --trigger window_focus
+##############################################
+# Floating
+##############################################
+
+# Fill
+shift + alt - up     : yabai -m window --grid 1:1:0:0:1:1
+
+# Left
+shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
+
+# Right
+shift + alt - right  : yabai -m window --grid 1:2:1:0:1:1
+
+# open
+alt - return : open /Applications/WezTerm.app
+alt - g : open /Applications/Google\ Chrome.app
+alt - q : open /Applications/QQ.app
+alt - w : open /Applications/WeChat.app
+alt - k : open /Applications/kitty.app
+alt - i : open /Applications/iTerm.app
+alt - s : open /Applications/Spotify.app
+alt - b : open /Applications/qutebrowser.app
+
+# close
+alt - d : yabai -m window --close
+
