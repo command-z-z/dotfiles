@@ -67,9 +67,9 @@ require('telescope').load_extension('vim_bookmarks')
 require("telescope").load_extension("file_browser")
 
 --按键设置
-vim.api.nvim_set_keymap("n", "<leader>ff", [[<cmd>lua require('telescope.builtin').find_files()<cr>]], {})
-vim.api.nvim_set_keymap("n", "<leader>fg", [[<cmd>lua require('telescope.builtin').live_grep()<cr>]], {})
-vim.api.nvim_set_keymap("n", "<leader>fh", [[<cmd>lua require('telescope.builtin').help_tags()<cr>]], {})
+vim.api.nvim_set_keymap("n", "<leader>ff", [[<cmd>Telescope find_files<cr>]], {})
+vim.api.nvim_set_keymap("n", "<leader>fg", [[<cmd>Telescope live_grep<cr>]], {})
+vim.api.nvim_set_keymap("n", "<leader>fh", [[<cmd>Telescope help_tags<cr>]], {})
 vim.api.nvim_set_keymap("n", "<leader>ma", [[<cmd>Telescope vim_bookmarks current_file<cr>]], {})
 vim.api.nvim_set_keymap("n", "<leader>mA", [[<cmd>Telescope vim_bookmarks all<cr>]], {})
 vim.api.nvim_set_keymap("n", "<leader>fo", [[<cmd>Telescope oldfiles<cr>]], {})

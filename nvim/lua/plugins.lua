@@ -110,7 +110,7 @@ return require('packer').startup({
         use {
             'lewis6991/gitsigns.nvim'
         }
-        -- tool
+        -- todo and trouble tool
         use {
             "folke/trouble.nvim",
             requires = "nvim-tree/nvim-web-devicons",
@@ -119,6 +119,10 @@ return require('packer').startup({
             "folke/todo-comments.nvim",
             requires = "nvim-lua/plenary.nvim",
         }
+        -- dap 
+        use "mfussenegger/nvim-dap"
+        use {"mfussenegger/nvim-dap-python"}
+        use {"rcarriga/nvim-dap-ui"}
 	end,
 	config = {
 		max_jobs = 16,

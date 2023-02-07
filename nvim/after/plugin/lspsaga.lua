@@ -125,7 +125,7 @@ keymap("n", "gr", "<cmd>Lspsaga rename<CR>", { silent = true })
 keymap("n", "gd", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
 
 -- Show line diagnostics
-keymap("n", "<leader>cd", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true })
+-- keymap("n", "<leader>cd", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true })
 
 -- Show cursor diagnostic
 keymap("n", "<leader>cd", "<cmd>Lspsaga show_cursor_diagnostics<CR>", { silent = true })
@@ -149,9 +149,9 @@ keymap("n","<leader>o", "<cmd>Lspsaga outline<CR>",{ silent = true })
 keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
 
 -- Float terminal
-keymap("n", "<A-d>", "<cmd>Lspsaga open_floaterm<CR>", { silent = true })
+keymap("n", "st", "<cmd>Lspsaga open_floaterm<CR>", { silent = true })
 -- if you want pass somc cli command into terminal you can do like this
 -- open lazygit in lspsaga float terminal
 -- keymap("n", "<A-d>", "<cmd>Lspsaga open_floaterm lazygit<CR>", { silent = true })
 -- close floaterm
-keymap("t", "<A-d>", [[<C-\><C-n><cmd>Lspsaga close_floaterm<CR>]], { silent = true })
+keymap("t", "st", [[<C-\><C-n><cmd>Lspsaga close_floaterm<CR>]], { silent = true })

@@ -26,4 +26,4 @@ vim.opt.hlsearch = true
 -- defx icon 
 vim.g.defx_icons_column_length = 2
 
-vim.opt.clipboard = "unnamedplus,unnamed"
+vim.opt.clipboard = "unnamedplus"
