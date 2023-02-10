@@ -13,12 +13,9 @@ treesitter.setup {
     disable = {}
   },
   ensure_installed = {
-    "json",
-    "html",
     "cpp",
     "c",
-    "javascript",
-    "css",
     "python",
+    "lua",
   }
 }
