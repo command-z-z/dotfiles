@@ -4,5 +4,5 @@ if not statue then
 end
 
 mason_lspconfig.setup({
-    ensure_installed = { "pyright", "clangd", "sumneko_lua" },
+    ensure_installed = { "pyright", "clangd", "lua_ls" },
 })

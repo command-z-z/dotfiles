@@ -17,5 +17,10 @@ treesitter.setup {
     "c",
     "python",
     "lua",
+    "rust",
+    "go",
+    "vim",
+    "markdown",
+    "markdown_inline"
   }
 }

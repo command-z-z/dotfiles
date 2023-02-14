@@ -1,5 +1,8 @@
 local keymap = vim.keymap.set
-local saga = require('lspsaga')
+local statue, saga = pcall(require, "lspsaga")
+if not statue then
+	return
+end
 
 saga.setup({
     -- Options with default value
@@ -149,9 +152,9 @@ keymap("n","<leader>o", "<cmd>Lspsaga outline<CR>",{ silent = true })
 keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
 
 -- Float terminal
-keymap("n", "st", "<cmd>Lspsaga open_floaterm<CR>", { silent = true })
+keymap("n", "st", "<cmd>Lspsaga term_toggle<CR>", { silent = true })
 -- if you want pass somc cli command into terminal you can do like this
 -- open lazygit in lspsaga float terminal
 -- keymap("n", "<A-d>", "<cmd>Lspsaga open_floaterm lazygit<CR>", { silent = true })
 -- close floaterm
-keymap("t", "st", [[<C-\><C-n><cmd>Lspsaga close_floaterm<CR>]], { silent = true })
+keymap("t", "st", [[<C-\><C-n><cmd>Lspsaga term_toggle<CR>]], { silent = true })

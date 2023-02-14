@@ -36,7 +36,7 @@ end
 
 -- config language servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-local servers = { "pyright", "clangd", "sumneko_lua" }
+local servers = { "pyright", "clangd", "lua_ls" }
 
 for _, lsp in ipairs(servers) do
     require("lspconfig")[lsp].setup {

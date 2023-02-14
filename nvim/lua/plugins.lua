@@ -35,6 +35,13 @@ return require("lazy").setup(
             "t9md/vim-choosewin" -- 窗口选择器,可以让defx使用i打开文件
         }
     },
+    {
+        'nvim-tree/nvim-tree.lua',
+        dependencies = {
+            'nvim-tree/nvim-web-devicons', -- optional, for file icons
+        },
+        version = 'nightly' -- optional, updated every week. (see issue #1193)
+    },
     --markdown预览插件
     {
         "iamcco/markdown-preview.nvim",
