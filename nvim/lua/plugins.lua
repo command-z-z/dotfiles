@@ -136,4 +136,7 @@ return require("lazy").setup(
     "mfussenegger/nvim-dap",
     "mfussenegger/nvim-dap-python",
     "rcarriga/nvim-dap-ui",
+    "theHamsta/nvim-dap-virtual-text",
+    -- ui
+    "MunifTanjim/nui.nvim"
 })

@@ -30,6 +30,8 @@ vim.api.nvim_set_keymap("i", "jk", "<Esc>", opts)
 -- 快速跳转行首与行尾  
 vim.api.nvim_set_keymap("n", "L", "$", opts)
 vim.api.nvim_set_keymap("n", "H", "^", opts)
+vim.api.nvim_set_keymap("v", "L", "$", opts)
+vim.api.nvim_set_keymap("v", "H", "^", opts)
 -- 向下5行
 vim.api.nvim_set_keymap("", "<C-j>", "5j", opts)
 vim.api.nvim_set_keymap("", "<C-k>", "5k", opts)
