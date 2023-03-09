@@ -1,10 +1,11 @@
--- 基础使用习惯配置
+-- base configuration
 require('options')
--- 按键映射
+-- leyboard mappings
 require('mappings')
--- 插件管理
+-- plugins management
 require('plugins')
--- 配置主题
+-- theme
 require('colors.catppuccin')
 -- require('colors.nord')
+-- require('colors.tokyonight')
 

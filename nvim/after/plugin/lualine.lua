@@ -150,3 +150,4 @@ lualine.setup({
 		theme = "catppuccin",
 	},
 })
+

@@ -1,27 +1,27 @@
--- vim 个人使用习惯配置start------
+-- vim personal config start------
 vim.opt.encoding = "utf-8"
--- 使用鼠标
+-- ban mouse
 vim.opt.mouse = "c"
--- 显示相对行号
+-- display relative line number
 vim.opt.relativenumber = true
--- 显示行号
+-- display line number
 vim.opt.number = true
--- tab=4个空格
+-- tab equal four tab
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
--- 高度光标所在行
+-- highlight line where is cursor
 vim.opt.cursorline = true
--- 设置不换行
+-- set
 vim.opt.wrap = true
--- 显示按下的按键
+-- set type key
 vim.opt.showcmd = true
--- 按tab显示菜单
+-- 
 vim.opt.wildmenu = true
--- 不需要备份文件
+-- no need back file
 vim.opt.backup = false
--- no highlight search
+-- highlight search
 vim.opt.hlsearch = true
 -- defx icon 
 vim.g.defx_icons_column_length = 2

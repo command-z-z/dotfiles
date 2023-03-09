@@ -21,6 +21,8 @@ treesitter.setup {
     "go",
     "vim",
     "markdown",
-    "markdown_inline"
+    "markdown_inline",
+    "regex",
+    "bash",
   }
 }

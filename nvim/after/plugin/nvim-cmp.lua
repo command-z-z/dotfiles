@@ -11,16 +11,16 @@ local cmpFormat = function(entry, vim_item)
     vim_item.kind = lspkind.presets.default[vim_item.kind] .. " " .. vim_item.kind
     vim_item.menu =
     ({
-        buffe = "[Buffer]",
-        nvim_lsp = "[LSP]",
-        luasnip = "[Snip]",
-        nvim_lua = "[Lua]",
+        buffe       = "[Buffer]",
+        nvim_lsp    = "[LSP]",
+        luasnip     = "[Snip]",
+        nvim_lua    = "[Lua]",
         cmp_tabnine = "[TabNine]",
-        look = "[Look]",
-        path = "[Path]",
-        spell = "[Spell]",
-        calc = "[Calc]",
-        emoji = "[Emoji]"
+        look        = "[Look]",
+        path        = "[Path]",
+        spell       = "[Spell]",
+        calc        = "[Calc]",
+        emoji       = "[Emoji]"
     })[entry.source.name]
     return vim_item
 end
@@ -42,7 +42,6 @@ cmp.setup {
     },
     formatting = {
         format = cmpFormat
-        -- format = require 'lspkind'.cmp_format( { mode = "symbol_text" } ),
     },
     snippet = {
         expand = function(args)

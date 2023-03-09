@@ -1,4 +1,4 @@
-local status, text = pcall(require, "text")
+local status, text = pcall(require, "nvim-dap-virtual-text")
 if (not status) then
     return
 end

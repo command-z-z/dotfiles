@@ -14,20 +14,28 @@ vim.opt.rtp:prepend(lazypath)
 return require("lazy").setup(
 {
     'nvim-tree/nvim-web-devicons',
-    --新状态栏插件
+    --statueline 
     {
         "nvim-lualine/lualine.nvim",
         dependencies = {"nvim-tree/nvim-web-devicons", opt = true}
     },
-    -- bufferline 显示标签页,与lualine配合使用
+    -- bufferline 
     {'akinsho/bufferline.nvim', version = "v3.*", dependencies = 'nvim-tree/nvim-web-devicons'},
-
-    -- 主题
+    -- notify
+    {
+        "folke/noice.nvim",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify",
+        },
+    },
+    -- theme
     'shaunsingh/nord.nvim',
     { "catppuccin/nvim", name = "catppuccin" },
+    "folke/tokyonight.nvim",
     -- ranger
     "kevinhwang91/rnvimr",
-    -- 文件管理插件，类似与ranger。
+    -- file management
     {
         "Shougo/defx.nvim",
         dependencies = {
@@ -42,7 +50,7 @@ return require("lazy").setup(
         },
         version = 'nightly' -- optional, updated every week. (see issue #1193)
     },
-    --markdown预览插件
+    --markdown preview
     {
         "iamcco/markdown-preview.nvim",
         build = function() vim.fn["mkdp#util#install"]() end,
@@ -53,7 +61,7 @@ return require("lazy").setup(
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
     },
-    --Nvim LSP 客户端的快速入门配置
+    --Nvim LSP client
     {
         "hrsh7th/nvim-cmp",
         dependencies = {
@@ -69,19 +77,20 @@ return require("lazy").setup(
             "hrsh7th/cmp-emoji", --输入: 可以显示表情
         }
     },
-    -- 代码段提示
+    -- code snippets
     {
         "L3MON4D3/LuaSnip",
         dependencies = {
             "saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
             "rafamadriz/friendly-snippets" --代码段合集
-        }
+        },
+        event = 'InsertCharPre'
     },
-    -- 基于neovim 内置lsp 的轻量级lsp 插件，具有高性能UI。非常酷, 后面换成了glepnir的插件
-    { "glepnir/lspsaga.nvim", branch = "main"},
-    -- 符号自动匹配，比如：输入(自动闭合）
-    "windwp/nvim-autopairs",
-    --模糊搜索
+    -- lsp improve 
+    { "glepnir/lspsaga.nvim", branch = "main", event = 'LspAttach'},
+    -- symbols autopairs
+    {"windwp/nvim-autopairs", event = 'InsertEnter'},
+    -- fuzzy search
     {
         "nvim-telescope/telescope.nvim",
         dependencies = {
@@ -89,35 +98,39 @@ return require("lazy").setup(
             "nvim-tree/nvim-web-devicons"
         }
     },
-    -- 加速文件搜索速度,如果安装失败需要到插件目录执行make命令手动编译
+    -- search faster 
     {"nvim-telescope/telescope-fzf-native.nvim", build = "make"},
     -- file browser
     {"nvim-telescope/telescope-file-browser.nvim" },
-    --语法高亮
+    --grammar highlight
     {
         'nvim-treesitter/nvim-treesitter',
-        build = ':TSUpdate'
+        build = ':TSUpdate',
+        event = "BufRead"
     },
-    --注释插件
-    "b3nj5m1n/kommentary",
-    --快速运行
+    {
+        'nvim-treesitter/playground',
+    },
+    -- comment 
+    {"b3nj5m1n/kommentary"},
+    -- quickrun
     'thinca/vim-quickrun',
-    -- 代码write注释
+    -- docstrings
     {
         "danymat/neogen",
         dependencies = "nvim-treesitter/nvim-treesitter",
     },
-    -- 启动页面
+    -- start page
     {
         'glepnir/dashboard-nvim',
         event = 'VimEnter',
-        dependencies = {{'nvim-tree/nvim-web-devicons'}}
+        dependencies = {'nvim-tree/nvim-web-devicons'}
     },
-    -- 对齐页面
+    -- indent
     'lukas-reineke/indent-blankline.nvim',
-    -- 打标签
+    -- bookmark
     'MattesGroeger/vim-bookmarks',
-    -- telescope查询标签支持
+    -- telescope to search mark
     "tom-anders/telescope-vim-bookmarks.nvim",
     -- git 
     {
