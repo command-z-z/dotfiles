@@ -38,10 +38,10 @@
 <img src="./img/split-line.png" style="margin-top:20px;" width="600px">
 </p>
 
-<p align="center"><b>Show My Favorite Wallpaper</b></p>
+<p align="center"><b>Show My Favorite Desktop</b></p>
 
 <p align="center">
-<img src="./img/img1.gif" style="margin-top:30px">
+<img src="./img/img1.png" style="margin-top:30px">
 </p>
 
 ### 🧑🏾‍🎨 ScreenShot
