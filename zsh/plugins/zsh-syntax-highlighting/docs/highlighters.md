@@ -3,19 +3,21 @@ zsh-syntax-highlighting / highlighters
 
 Syntax highlighting is done by pluggable highlighters:
 
-* `main` - the base highlighter, and the only one [active by default][1].
-* `brackets` - [matches brackets][2] and parenthesis.
-* `pattern` - matches [user-defined patterns][3].
-* `cursor` - matches [the cursor position][4].
-* `root` - highlights the whole command line [if the current user is root][5].
-* `line` - applied to [the whole command line][6].
+* `main` - the base highlighter, and the only one [active by default][main].
+* `brackets` - [matches brackets][brackets] and parenthesis.
+* `pattern` - matches [user-defined patterns][pattern].
+* `regexp` - matches [user-defined regular expressions][regexp].
+* `cursor` - matches [the cursor position][cursor].
+* `root` - highlights the whole command line [if the current user is root][root].
+* `line` - applied to [the whole command line][line].
 
-[1]: highlighters/main.md
-[2]: highlighters/brackets.md
-[3]: highlighters/pattern.md
-[4]: highlighters/cursor.md
-[5]: highlighters/root.md
-[6]: highlighters/line.md
+[main]: highlighters/main.md
+[brackets]: highlighters/brackets.md
+[pattern]: highlighters/pattern.md
+[regexp]: highlighters/regexp.md
+[cursor]: highlighters/cursor.md
+[root]: highlighters/root.md
+[line]: highlighters/line.md
 
 
 Highlighter-independent settings
@@ -25,10 +27,10 @@ By default, all command lines are highlighted.  However, it is possible to
 prevent command lines longer than a fixed number of characters from being
 highlighted by setting the variable `${ZSH_HIGHLIGHT_MAXLENGTH}` to the maximum
 length (in characters) of command lines to be highlighter.  This is useful when
-editing very long comand lines (for example, with the [`fned`][fned] utility
+editing very long command lines (for example, with the [`fned`][fned] utility
 function).  Example:
 
-[fned]: http://zsh.sourceforge.net/Doc/Release/User-Contributions.html#index-zed
+[fned]: https://zsh.sourceforge.io/Doc/Release/User-Contributions.html#index-zed
 
 ```zsh
 ZSH_HIGHLIGHT_MAXLENGTH=512
@@ -59,7 +61,7 @@ same as the syntax of "types of highlighting" of the zsh builtin
 `$zle_highlight` array, which is documented in [the `zshzle(1)` manual
 page][zshzle-Character-Highlighting].
 
-[zshzle-Character-Highlighting]: http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Character-Highlighting
+[zshzle-Character-Highlighting]: https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html#Character-Highlighting
 
 Some highlighters support additional configuration parameters; see each
 highlighter's documentation for details and examples.

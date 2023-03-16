@@ -36,5 +36,5 @@ ed() { command ed "$@" }
 BUFFER=$'$EDITOR'
 
 expected_region_highlight=(
-  '1 7 function "issue #687"' # $EDITOR
+  '1 7 function' # $EDITOR
 )

@@ -76,7 +76,7 @@ _zsh_highlight_main_add_region_highlight() {
   integer start=$1 end=$2
   shift 2
 
-  if (( in_alias )); then
+  if (( $#in_alias )); then
     [[ $1 == unknown-token ]] && alias_style=unknown-token
     return
   fi
@@ -349,6 +349,7 @@ _zsh_highlight_highlighter_main_paint()
     'noglob' ''
     # 'time' and 'nocorrect' shouldn't be added here; they're reserved words, not precommands.
 
+    # miscellaneous commands
     'doas' aCu:Lns # as of OpenBSD's doas(1) dated September 4, 2016
     'nice' n: # as of current POSIX spec
     'pkexec' '' # doesn't take short options; immune to #121 because it's usually not passed --option flags
@@ -362,21 +363,20 @@ _zsh_highlight_highlighter_main_paint()
     'env' u:i
     'ionice' cn:t:pPu # util-linux 2.33.1-0.1
     'strace' IbeaosXPpEuOS:ACdfhikqrtTvVxyDc # strace 4.26-0.2
-
-    # As of OpenSSH 8.1p1
-    'ssh-agent' aEPt:csDd:k
-    # suckless-tools v44
-    # Argumentless flags that can't be followed by a command: -v
-    'tabbed' gnprtTuU:cdfhs
-
-    # moreutils 0.62-1
-    'chronic' :ev
-    'ifne' :n
-
+    'proxychains' q:f # proxychains 4.4.0
+    'torsocks' idq:upaP # Torsocks 2.3.0
+    'torify' idq:upaP # Torsocks 2.3.0
+    'ssh-agent' aEPt:csDd:k # As of OpenSSH 8.1p1
+    'tabbed' gnprtTuU:cdfhs:v # suckless-tools v44
+    'chronic' :ev # moreutils 0.62-1
+    'ifne' :n # moreutils 0.62-1
+    'grc' :se # grc - a "generic colouriser" (that's their spelling, not mine)
+    'cpulimit' elp:ivz # cpulimit 0.2
   )
   # Commands that would need to skip one positional argument:
   #    flock
   #    ssh
+  #    _wanted (skip two)
 
   if [[ $zsyh_user_options[ignorebraces] == on || ${zsyh_user_options[ignoreclosebraces]:-off} == on ]]; then
     local right_brace_is_recognised_everywhere=false
@@ -476,7 +476,11 @@ _zsh_highlight_main_highlighter__try_expand_parameter()
             ;;
           (*)
             # scalar, presumably
-            words=( ${(P)MATCH} )
+            if [[ $zsyh_user_options[shwordsplit] == on ]]; then
+              words=( ${(P)=MATCH} )
+            else
+              words=( ${(P)MATCH} )
+            fi
             ;;
         esac
         reply=( "${words[@]}" )
@@ -498,17 +502,18 @@ _zsh_highlight_main_highlighter__try_expand_parameter()
 _zsh_highlight_main_highlighter_highlight_list()
 {
   integer start_pos end_pos=0 buf_offset=$1 has_end=$3
-  # alias_style is the style to apply to an alias once in_alias=0
+  # alias_style is the style to apply to an alias once $#in_alias == 0
   #     Usually 'alias' but set to 'unknown-token' if any word expanded from
   #     the alias would be highlighted as unknown-token
   # param_style is analogous for parameter expansions
   local alias_style param_style last_arg arg buf=$4 highlight_glob=true saw_assignment=false style
   local in_array_assignment=false # true between 'a=(' and the matching ')'
-  # in_alias is equal to the number of shifts needed until arg=args[1] pops an
-  #     arg from BUFFER and not added by an alias.
+  # in_alias is an array of integers with each element equal to the number
+  #     of shifts needed until arg=args[1] pops an arg from the next level up
+  #     alias or from BUFFER.
   # in_param is analogous for parameter expansions
-  integer in_alias=0 in_param=0 len=$#buf
-  local -a match mbegin mend list_highlights
+  integer in_param=0 len=$#buf
+  local -a in_alias match mbegin mend list_highlights
   # seen_alias is a map of aliases already seen to avoid loops like alias a=b b=a
   local -A seen_alias
   # Pattern for parameter names
@@ -596,12 +601,23 @@ _zsh_highlight_main_highlighter_highlight_list()
     last_arg=$arg
     arg=$args[1]
     shift args
-    if (( in_alias )); then
-      (( in_alias-- ))
-      if (( in_alias == 0 )); then
+    if (( $#in_alias )); then
+      (( in_alias[1]-- ))
+      # Remove leading 0 entries
+      in_alias=($in_alias[$in_alias[(i)<1->],-1])
+      if (( $#in_alias == 0 )); then
         seen_alias=()
         # start_pos and end_pos are of the alias (previous $arg) here
         _zsh_highlight_main_add_region_highlight $start_pos $end_pos $alias_style
+      else
+        # We can't unset keys that contain special characters (] \ and some others).
+        # More details: https://www.zsh.org/workers/43269
+        (){
+          local alias_name
+          for alias_name in ${(k)seen_alias[(R)<$#in_alias->]}; do
+            seen_alias=("${(@kv)seen_alias[(I)^$alias_name]}")
+          done
+        }
       fi
     fi
     if (( in_param )); then
@@ -637,9 +653,9 @@ _zsh_highlight_main_highlighter_highlight_list()
       fi
     fi
 
-    if (( in_alias == 0 && in_param == 0 )); then
+    if (( $#in_alias == 0 && in_param == 0 )); then
       # Compute the new $start_pos and $end_pos, skipping over whitespace in $buf.
-      [[ "$proc_buf" = (#b)(#s)(([ $'\t']|[\\]$'\n')#)(?|)* ]]
+      [[ "$proc_buf" = (#b)(#s)(''([ $'\t']|[\\]$'\n')#)(?|)* ]]
       # The first, outer parenthesis
       integer offset="${#match[1]}"
       (( start_pos = end_pos + offset ))
@@ -693,11 +709,10 @@ _zsh_highlight_main_highlighter_highlight_list()
       if [[ $res == "alias" ]]; then
         # Mark insane aliases as unknown-token (cf. #263).
         if [[ $arg == ?*=* ]]; then
-          (( in_alias == 0 )) && in_alias=1
           _zsh_highlight_main_add_region_highlight $start_pos $end_pos unknown-token
           continue
         fi
-        seen_alias[$arg]=1
+        seen_alias[$arg]=$#in_alias
         _zsh_highlight_main__resolve_alias $arg
         local -a alias_args
         # Elision is desired in case alias x=''
@@ -707,15 +722,15 @@ _zsh_highlight_main_highlighter_highlight_list()
           alias_args=(${(z)REPLY})
         fi
         args=( $alias_args $args )
-        if (( in_alias == 0 )); then
+        if (( $#in_alias == 0 )); then
           alias_style=alias
-          # Add one because we will in_alias-- on the next loop iteration so
-          # this iteration should be considered in in_alias as well
-          (( in_alias += $#alias_args + 1 ))
         else
-          # This arg is already included in the count, so no need to + 1.
-          (( in_alias += $#alias_args ))
+          # Transfer the count of this arg to the new element about to be appended.
+          (( in_alias[1]-- ))
         fi
+        # Add one because we will in_alias[1]-- on the next loop iteration so
+        # this iteration should be considered in in_alias as well
+        in_alias=( $(($#alias_args + 1)) $in_alias )
         (( in_redirection++ )) # Stall this arg
         continue
       else
@@ -728,7 +743,7 @@ _zsh_highlight_main_highlighter_highlight_list()
     # Analyse the current word.
     if _zsh_highlight_main__is_redirection $arg ; then
       if (( in_redirection == 1 )); then
-        # Two consecuive redirection operators is an error.
+        # Two consecutive redirection operators is an error.
         _zsh_highlight_main_add_region_highlight $start_pos $end_pos unknown-token
       else
         in_redirection=2
@@ -854,7 +869,7 @@ _zsh_highlight_main_highlighter_highlight_list()
         style=commandseparator
       elif [[ $this_word == *':start:'* ]] && [[ $arg == $'\n' ]]; then
         style=commandseparator
-      elif [[ $this_word == *':start:'* ]] && [[ $arg == ';' ]] && (( in_alias )); then
+      elif [[ $this_word == *':start:'* ]] && [[ $arg == ';' ]] && (( $#in_alias )); then
         style=commandseparator 
       else
         # Empty commands (semicolon follows nothing) are valid syntax.
@@ -879,6 +894,14 @@ _zsh_highlight_main_highlighter_highlight_list()
         next_word=':start:'
         highlight_glob=true
         saw_assignment=false
+        (){
+          local alias_name
+          for alias_name in ${(k)seen_alias[(R)<$#in_alias->]}; do
+            # We can't unset keys that contain special characters (] \ and some others).
+            # More details: https://www.zsh.org/workers/43269
+            seen_alias=("${(@kv)seen_alias[(I)^$alias_name]}")
+          done
+        }
         if [[ $arg != '|' && $arg != '|&' ]]; then
           next_word+=':start_of_pipeline:'
         fi
@@ -902,8 +925,8 @@ _zsh_highlight_main_highlighter_highlight_list()
         next_word=${next_word//:regular:/}
         next_word+=':sudo_opt:'
         next_word+=':start:'
-        if [[ $arg == 'exec' ]]; then
-          # To allow "exec 2>&1;" where there's no command word
+        if [[ $arg == 'exec' || $arg == 'env' ]]; then
+          # To allow "exec 2>&1;" and "env | grep" where there's no command word
           next_word+=':regular:'
         fi
       else
@@ -1146,7 +1169,7 @@ _zsh_highlight_main_highlighter_highlight_list()
     fi
     _zsh_highlight_main_add_region_highlight $start_pos $end_pos $style
   done
-  (( in_alias == 1 )) && in_alias=0 _zsh_highlight_main_add_region_highlight $start_pos $end_pos $alias_style
+  (( $#in_alias )) && in_alias=() _zsh_highlight_main_add_region_highlight $start_pos $end_pos $alias_style
   (( in_param == 1 )) && in_param=0 _zsh_highlight_main_add_region_highlight $start_pos $end_pos $param_style
   [[ "$proc_buf" = (#b)(#s)(([[:space:]]|\\$'\n')#) ]]
   REPLY=$(( end_pos + ${#match[1]} - 1 ))
@@ -1257,7 +1280,7 @@ _zsh_highlight_main_highlighter_check_path()
 
   # If this word ends the buffer, check if it's the prefix of a valid path.
   if (( has_end && (len == end_pos) )) &&
-     (( ! in_alias )) &&
+     (( ! $#in_alias )) &&
      [[ $WIDGET != zle-line-finish ]]; then
     # TODO: When we've dropped support for pre-5.0.6 zsh, use the *(Y1) glob qualifier here.
     local -a tmp
