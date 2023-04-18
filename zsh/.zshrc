@@ -139,7 +139,7 @@ bindkey ',' autosuggest-accept
 EDITOR=nvim 
 export EDITOR
 
-bindkey '^h'  backward-char         #control+h:向左移动一个单词
+bindkey '^h'  backward-char         #control+h：向左移动一个单词
 bindkey '^l'  forward-char          #control+l：向右移动一个单词
 bindkey '^k'  up-line-or-history    #control+k：向上翻看历史记录
 bindkey '^j'  down-line-or-history  #control+j：向下翻看历史记录

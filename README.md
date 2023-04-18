@@ -51,23 +51,13 @@
 <details>
 <summary><b>Load More</b> <span style="font-size:14px;">(Click to expend) </span> </summary>
 
-
 ![](./img/img3.png)
 
-![](./img/img7.png)
-
 ![](./img/img4.png)
-
-![](./img/img9.png)
 
 ![](./img/img5.png)
 
 ![](./img/img6.png)
-
-![](./img/img8.png)
-
-![](./img/img10.png)
-
 </details>
 
 
@@ -77,21 +67,29 @@ This config folder include all my environment in My OS(Just cherry pick the piec
 
 - Terminal [`Wezterm`](https://github.com/wez/wezterm) [`kitty`](https://github.com/kovidgoyal/kitty) [`iterm2`](https://github.com/gnachman/iTerm2)
 - Shell [`zsh`](https://www.zsh.org/)
-- Shell framework [`ohmyzsh`](https://github.com/ohmyzsh/ohmyzsh)
-- Shell theme [`starship`](https://github.com/starship/starship)
-- File management tool [`ranger`](https://github.com/ranger/ranger)
-- File find tool [`fzf`](https://github.com/junegunn/fzf)
-- Ls beautification tool [`lsd`](https://github.com/Peltoche/lsd)
+- Shell Framework [`ohmyzsh`](https://github.com/ohmyzsh/ohmyzsh)
+- Shell Theme [`starship`](https://github.com/starship/starship)
+- File Management Tool [`ranger`](https://github.com/ranger/ranger)
+- Fuzzy Finder Tool [`fzf`](https://github.com/junegunn/fzf)
+- Ls Beautification Tool [`lsd`](https://github.com/Peltoche/lsd)
 - Font [`HackNerdFont`](https://github.com/ryanoasis/nerd-fonts) [`JetBrainsMono`](https://github.com/JetBrains/JetBrainsMono) [`OperatorMono`](https://www.typography.com/fonts/operator/styles/multi) 
-- Theme [`Catppuccin`](https://github.com/catppuccin/catppuccin) [`dracula`](https://github.com/dracula/dracula-theme) [`Andromeda`](https://github.com/EliverLara/Andromeda)
-- System information tool [`neofetch`](https://github.com/dylanaraps/neofetch)
-- Terminal git tool [`lazygit`](https://github.com/jesseduffield/lazygit)
-- File editor tool [`nvim`](https://github.com/neovim/neovim)
-- Terminal multiplexing tool [`tmux`](https://github.com/tmux/tmux)
-- Tmux framework [`ohmytmux`](https://github.com/gpakosz/.tmux)
-- Windows management utility [`yabai`](https://github.com/koekeishiya/yabai)
-- Simple hotkey daemon [`skhd`](https://github.com/koekeishiya/skhd)
-- A yabai status bar [`simple-bar`](https://github.com/Jean-Tinland/simple-bar)
+- Theme [`Catppuccin`](https://github.com/catppuccin/catppuccin) 
+- Browser [`Chrome`](https://www.google.com/) [`qutebrowser`](https://github.com/qutebrowser/qutebrowser)
+- The Hacker's Browser Plugin [`vimium`](https://github.com/philc/vimium)
+- System Information Tool [`neofetch`](https://github.com/dylanaraps/neofetch)
+- Terminal Git Tool [`lazygit`](https://github.com/jesseduffield/lazygit)
+- File Editor Tool [`neovim`](https://github.com/neovim/neovim)
+- Terminal Multiplexing Tool [`tmux`](https://github.com/tmux/tmux)
+- Windows Management Utility [`yabai`](https://github.com/koekeishiya/yabai)
+- Simple Hotkey Daemon [`skhd`](https://github.com/koekeishiya/skhd)
+- Status Bar [`sketchybar`](https://github.com/FelixKratz/SketchyBar)
+- Music Player [`Spotify`](https://www.spotify.com/us/download/mac/)
+- Spotify Client [`spotify-tui`](https://github.com/Rigellute/spotify-tui) [`spicetify`](https://github.com/spicetify/spicetify-cli)
+- Cross-platform Audio Visualizer[`cava`](https://github.com/karlstav/cava)
+- PDF Viewer [`zathura for MacOS`](https://github.com/zegervdv/homebrew-zathura) or [`zathura`](https://github.com/pwmt/zathura)
+- Application Launcher [`Alfred`](https://www.alfredapp.com/)
+- System resource monitor [`btop`](https://github.com/aristocratos/btop)
+- Cat with syntax highlighting and Git integration [`bat`](https://github.com/sharkdp/bat)
 
 ### 💡 Tutorial
 
@@ -102,8 +100,7 @@ And i will also write some tutorial in my blog(Live in Terminal Series).
 
 ### 🔨 Dependencies
 #### 📦 Packages
-```
-# 安装终端
+``` bash
 brew install iTerm2
 brew install --cask kitty
 brew tap wez/wezterm
@@ -113,7 +110,7 @@ brew install --cask wez/wezterm/wezterm
 ```
 # 安装HackNerdFont
 brew tap homebrew/cask-fonts
-brew install font-hack-nerd-font --cask
+brew install --cask font-hack-nerd-font
 
 # 安装JetBrainsMono
 brew tap homebrew/cask-fonts

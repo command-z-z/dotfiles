@@ -29,7 +29,7 @@ yabai -m config window_border_width             2
 yabai -m config window_border_hidpi             off 
 yabai -m config window_border_radius            11
 yabai -m config window_animation_duration       0.20
-yabai -m config active_window_border_color      0xff7dcfff
+yabai -m config active_window_border_color      0xffcad3f5
 yabai -m config normal_window_border_color      0xff826fa1
 yabai -m config insert_feedback_color           0xffd75f5f
 
