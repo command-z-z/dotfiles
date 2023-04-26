@@ -7,5 +7,3 @@ require('plugins')
 -- theme
 require('colors.catppuccin')
 -- require('colors.nord')
--- require('colors.tokyonight')
-

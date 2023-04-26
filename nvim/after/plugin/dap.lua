@@ -18,13 +18,19 @@ dap.adapters.cppdbg = {
 dap.configurations.c = {
   {
     name = "Launch File",
-    type = "cppdbg",
+    type = "lldb",
     request = "launch",
     program = function()
         return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
     end,
     cwd = '${workspaceFolder}',
-    stopOnEntry = true,
+    -- macos
+    stopOnEntry = false,
+    args = {},
+    runInTerminal = true,
+    postRunCommands = {'process handle -p true -s false -n false SIGWINCH'}
+    -- linux
+    -- stopOnEntry = true,
   },
 }
 

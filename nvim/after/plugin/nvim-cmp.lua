@@ -11,15 +11,10 @@ local cmpFormat = function(entry, vim_item)
     vim_item.kind = lspkind.presets.default[vim_item.kind] .. " " .. vim_item.kind
     vim_item.menu =
     ({
-        buffe       = "[Buffer]",
         nvim_lsp    = "[LSP]",
-        luasnip     = "[Snip]",
         nvim_lua    = "[Lua]",
-        cmp_tabnine = "[TabNine]",
-        look        = "[Look]",
+        luasnip     = "[Snip]",
         path        = "[Path]",
-        spell       = "[Spell]",
-        calc        = "[Calc]",
         emoji       = "[Emoji]"
     })[entry.source.name]
     return vim_item
@@ -81,15 +76,10 @@ cmp.setup {
     },
     sources = {
         {name = "nvim_lsp"},
-        {name = "luasnip"},
         {name = "nvim_lua"},
-        {name = "buffer"},
+        {name = "luasnip"},
         {name = "path"},
-        {name = "look"},
-        {name = "spell"},
         {name = "emoji"},
-        {name = "calc"},
-        {name = "cmp_tabnine"},
     }
 }
 

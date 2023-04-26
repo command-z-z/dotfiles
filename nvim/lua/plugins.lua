@@ -32,7 +32,6 @@ return require("lazy").setup(
     -- theme
     'shaunsingh/nord.nvim',
     { "catppuccin/nvim", name = "catppuccin" },
-    "folke/tokyonight.nvim",
     -- ranger
     "kevinhwang91/rnvimr",
     -- file management
@@ -42,13 +41,6 @@ return require("lazy").setup(
             "kristijanhusak/defx-icons", -- dexf文件管理图标支持
             "t9md/vim-choosewin" -- 窗口选择器,可以让defx使用i打开文件
         }
-    },
-    {
-        'nvim-tree/nvim-tree.lua',
-        dependencies = {
-            'nvim-tree/nvim-web-devicons', -- optional, for file icons
-        },
-        version = 'nightly' -- optional, updated every week. (see issue #1193)
     },
     --markdown preview
     {
@@ -68,12 +60,8 @@ return require("lazy").setup(
             "hrsh7th/cmp-nvim-lsp", --neovim 内置 LSP 客户端的 nvim-cmp 源
             --以下插件可选，可以根据个人喜好删减
             "onsails/lspkind-nvim", --美化自动完成提示信息
-            "hrsh7th/cmp-buffer", --从buffer中智能提示
             "hrsh7th/cmp-nvim-lua", --nvim-cmp source for neovim Lua API.
-            "octaltree/cmp-look", --用于完成英语单词
             "hrsh7th/cmp-path", --自动提示硬盘上的文件
-            "hrsh7th/cmp-calc", --输入数学算式（如1+1=）自动计算
-            "f3fora/cmp-spell", --nvim-cmp 的拼写源基于 vim 的拼写建议
             "hrsh7th/cmp-emoji", --输入: 可以显示表情
         }
     },
@@ -84,12 +72,11 @@ return require("lazy").setup(
             "saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
             "rafamadriz/friendly-snippets" --代码段合集
         },
-        event = 'InsertCharPre'
     },
     -- lsp improve 
-    { "glepnir/lspsaga.nvim", branch = "main", event = 'LspAttach'},
+    { "glepnir/lspsaga.nvim", branch = "main"},
     -- symbols autopairs
-    {"windwp/nvim-autopairs", event = 'InsertEnter'},
+    {"windwp/nvim-autopairs"},
     -- fuzzy search
     {
         "nvim-telescope/telescope.nvim",
@@ -106,10 +93,6 @@ return require("lazy").setup(
     {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
-        event = "BufRead"
-    },
-    {
-        'nvim-treesitter/playground',
     },
     -- comment 
     {"b3nj5m1n/kommentary"},
@@ -123,7 +106,6 @@ return require("lazy").setup(
     -- start page
     {
         'glepnir/dashboard-nvim',
-        event = 'VimEnter',
         dependencies = {'nvim-tree/nvim-web-devicons'}
     },
     -- indent

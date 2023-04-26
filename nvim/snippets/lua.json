@@ -1,116 +1,145 @@
 {
-    "_G": {
-        "body": "_G(${0:...})",
-        "description": "5.1,5.2,5.3\n\n_G",
-        "prefix": "_G",
-        "scope": "source.lua"
+    "require": {
+        "prefix": "req",
+        "body": [
+            "require(\"${1:module}\")"
+        ],
+        "description": "Require module"
     },
-    "aaaa": {
-        "body": "_G(${0:...})",
-        "description": "5.1,5.2,5.3\n\n_G",
-        "prefix": "_G",
-        "scope": "source.lua"
+    "return": {
+        "prefix": "rt",
+        "body": [
+            "return $0"
+        ],
+        "description": "return value"
     },
-    "assert": {
-        "body": "assert(${1:v}${2:[, message]})",
-        "description": "5.1,5.2,5.3\n\nassert()",
-        "prefix": "assert",
-        "scope": "source.lua"
+    "assigment": {
+        "prefix": "ll",
+        "body": [
+            "local ${1:varName} = ${0:value}"
+        ],
+        "description": "create a variable"
     },
-    "collectgarbage": {
-        "body": "collectgarbage(${1:[opt]}${2:[, arg]})",
-        "description": "5.1,5.2,5.3\n\ncollectgarbage()",
-        "prefix": "collectgarbage",
-        "scope": "source.lua"
+    "local": {
+        "prefix": "l",
+        "body": [
+            "local ${0}"
+        ],
+        "description": "create a variable"
     },
-    "coroutine.create": {
-        "body": "coroutine.create( ${1:function} )",
-        "description": "5.1,5.2,5.3\n\ncoroutine.create",
-        "prefix": "coroutine.create",
-        "scope": "source.lua"
+    "locreq": {
+        "prefix": "lreq",
+        "body": [
+            "local ${1:var} = require(\"${2:module}\")"
+        ],
+        "description": "Require module as a variable"
     },
-    "coroutine.isyieldable": {
-        "body": "coroutine.isyieldable( )",
-        "description": "5.3\n\ncoroutine.isyieldable",
-        "prefix": "coroutine.isyieldable",
-        "scope": "source.lua"
-    },
-    "coroutine.resume": {
-        "body": "coroutine.resume( ${1:co}${2:[, val1, \u00b7\u00b7\u00b7]} )",
-        "description": "5.1,5.2,5.3\n\ncoroutine.resume",
-        "prefix": "coroutine.resume",
-        "scope": "source.lua"
-    },
-    "coroutine.running": {
-        "body": "coroutine.running( )",
-        "description": "5.1,5.2,5.3\n\ncoroutine.running",
-        "prefix": "coroutine.running",
-        "scope": "source.lua"
-    },
-    "coroutine.status": {
-        "body": "coroutine.status( ${1:co} )",
-        "description": "5.1,5.2,5.3\n\ncoroutine.status",
-        "prefix": "coroutine.status",
-        "scope": "source.lua"
-    },
-    "coroutine.wrap": {
-        "body": "coroutine.wrap( ${1:function} )",
-        "description": "5.1,5.2,5.3\n\ncoroutine.wrap",
-        "prefix": "coroutine.wrap",
-        "scope": "source.lua"
-    },
-    "coroutine.yield": {
-        "body": "coroutine.yield( ${1:...} )",
-        "description": "5.1,5.2,5.3\n\ncoroutine.yield",
-        "prefix": "coroutine.yield",
-        "scope": "source.lua"
-    },
-    "for": {
-        "body": "for ${1:i}=${2:1},${3:10} do\n\t${0:print(i)}\nend",
-        "description": "for i=1,10",
-        "prefix": "for",
-        "scope": "source.lua"
-    },
-    "fori": {
-        "body": "for ${1:i},${2:v} in ipairs(${3:table_name}) do\n\t${0:print(i,v)}\nend",
-        "description": "for i,v in ipairs()",
-        "prefix": "fori",
-        "scope": "source.lua"
-    },
-    "forp": {
-        "body": "for ${1:k},${2:v} in pairs(${3:table_name}) do\n\t${0:print(k,v)}\nend",
-        "description": "for k,v in pairs()",
-        "prefix": "forp",
-        "scope": "source.lua"
-    },
-    "fn": {
-        "body": "function ${1:function_name}( ${2:...} )\n\t${0:-- body}\nend",
-        "description": "function",
-        "prefix": "fn",
-        "scope": "source.lua"
-    },
-    "getfenv": {
-        "body": "getfenv(${0:...})",
-        "description": "5.1\n\ngetfenv ([f])",
-        "prefix": "getfenv",
-        "scope": "source.lua"
-    },
-    "getmetatable": {
-        "body": "getmetatable(${1:object})",
-        "description": "5.1,5.2,5.3\n\ngetmetatable (object)",
-        "prefix": "getmetatable",
-        "scope": "source.lua"
+    "class": {
+        "prefix": "cl",
+        "body": [
+            "${1:className} = {}\n",
+            "$1.${2:new} = function($3)",
+            "\tlocal ${4:varName} = ${5:value}\n",
+            "\t${6: --code}\n",
+            "\treturn $4",
+            "end"
+        ],
+        "description": "Create a class"
     },
     "if": {
-        "body": "if ${1:condition} then\n\t${0:-- body}\nend",
-        "description": "if",
         "prefix": "if",
-        "scope": "source.lua"
+        "body": [
+            "if ${1:true} then",
+            "\t$0",
+            "end"
+        ]
     },
-    "ifel": {
-        "body": "if ${1:condition} then\n\t${2:-- body}\nelse\n\t${0:-- body}\nend",
-        "description": "ifel",
-        "prefix": "ifel",
-        "scope": "source.lua"
+    "elseif": {
+        "prefix": "elseif",
+        "body": [
+            "elseif ${1:true} then",
+            "\t$0"
+        ]
+    },
+    "for": {
+        "prefix": "for",
+        "body": [
+            "for ${1:i}=${2:1},${3:10} do",
+            "\t$0",
+            "end"
+        ],
+        "description": "for loop range"
+    },
+    "foreach": {
+        "prefix": "foreach",
+        "body": [
+            "for i, ${1:x} in pairs(${2:table}) do",
+            "\t$0",
+            "end"
+        ]
+    },
+    "forline": {
+        "prefix": "forline",
+        "body": [
+            "f = io.open(${1:\"${2:filename}\"}, \"${3:r}\")\n",
+            "while true do",
+            "\tline = f:read()",
+            "\tif line == nil then break end\n",
+            "\t${0:-- code}",
+            "end"
+        ],
+        "description": "read file line by line"
+    },
+    "function": {
+        "prefix": "fu",
+        "body": [
+            "function ${1:name}($2)",
+            "\t${0:-- code}",
+            "end"
+        ]
+    },
+    "inline-function": {
+        "prefix": "f=",
+        "body": [
+            "local ${1:name} = function($2)",
+            "\t${0:-- code}",
+            "end"
+        ]
+    },
+    "print": {
+        "prefix": "p",
+        "body": [
+            "print(${0})"
+        ]
+    },
+    "self": {
+        "prefix": "self:",
+        "body": [
+            "function self:${1:methodName}($2)",
+            "\t$0",
+            "end"
+        ]
+    },
+    "while": {
+        "prefix": "while",
+        "body": [
+            "while ${1:true} do",
+            "\t$0",
+            "end"
+        ]
+    },
+    "pcall": {
+        "prefix": "pca",
+        "body": [
+            "pcall(${1:function})"
+        ],
+        "description": "Protect call a function"
+    },
+    "locpcall": {
+        "prefix": "lpca",
+        "body": [
+            "local ${1:status}, ${2:err_or_value} = pcall(${3:function})"
+        ],
+        "description": "Protect call a function as a variable"
     }
 }

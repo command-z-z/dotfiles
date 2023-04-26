@@ -15,14 +15,18 @@ brew tap homebrew/cask-fonts
 brew tap FelixKratz/formulae
 
 # Brew Formulae
-brew install gsl
+echo "Installing bat..."
+brew install bat
+
+echo "Installing bat..."
+brew install btop
+brew install neovim
 brew install llvm
 brew install ccls
 brew install boost
 brew install libomp
 brew install armadillo
 brew install mas
-brew install neovim
 brew install tree
 brew install wget
 brew install jq
@@ -54,28 +58,13 @@ brew install btop
 
 # Brew Casks
 echo "Installing Brew Casks..."
-brew install --cask inkscape
-brew install --cask moonlight
-brew install --cask mumble
-brew install --cask libreoffice
-brew install --cask alacritty
+brew install --cask alfred
 brew install --cask spotify
-brew install --cask monitorcontrol
-brew install --cask sloth
-brew install --cask zoom
-brew install --cask skim
-brew install --cask meetingbar
-brew install --cask machoview
-brew install --cask hex-fiend
-brew install --cask cutter
 brew install --cask font-hack-nerd-font
-brew install --cask vlc
 
 # Mac App Store Apps
 echo "Installing Mac App Store Apps..."
-mas install 1451685025 #Wireguard
 mas install 497799835 #xCode
-mas install 1480933944 #Vimari
 
 # macOS Settings
 echo "Changing macOS defaults..."
