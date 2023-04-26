@@ -38,8 +38,8 @@ return require("lazy").setup(
     {
         "Shougo/defx.nvim",
         dependencies = {
-            "kristijanhusak/defx-icons", -- dexf文件管理图标支持
-            "t9md/vim-choosewin" -- 窗口选择器,可以让defx使用i打开文件
+            "kristijanhusak/defx-icons", -- dexf fill management
+            "t9md/vim-choosewin" -- choose windows 
         }
     },
     --markdown preview
@@ -53,16 +53,15 @@ return require("lazy").setup(
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
     },
-    --Nvim LSP client
+    --Nvim completion client
     {
         "hrsh7th/nvim-cmp",
         dependencies = {
-            "hrsh7th/cmp-nvim-lsp", --neovim 内置 LSP 客户端的 nvim-cmp 源
-            --以下插件可选，可以根据个人喜好删减
-            "onsails/lspkind-nvim", --美化自动完成提示信息
+            "onsails/lspkind-nvim", --for prompt message
+            "hrsh7th/cmp-nvim-lsp", --neovim 
             "hrsh7th/cmp-nvim-lua", --nvim-cmp source for neovim Lua API.
-            "hrsh7th/cmp-path", --自动提示硬盘上的文件
-            "hrsh7th/cmp-emoji", --输入: 可以显示表情
+            "hrsh7th/cmp-path", --for path start with /
+            "hrsh7th/cmp-emoji", --for emoji start with :
         }
     },
     -- code snippets
@@ -70,7 +69,7 @@ return require("lazy").setup(
         "L3MON4D3/LuaSnip",
         dependencies = {
             "saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
-            "rafamadriz/friendly-snippets" --代码段合集
+            "rafamadriz/friendly-snippets" -- snippets
         },
     },
     -- lsp improve 

@@ -14,9 +14,35 @@ echo "Installing Brew Formulae..."
 brew tap homebrew/cask-fonts
 brew tap FelixKratz/formulae
 
+# install Terminal
+brew install --cask kitty
+brew install --cask iterm2
+brew install --cask wezterm
+
+# zsh
+
+
+# tmux
+brew install tmux
+
+
 # Brew Formulae
-echo "Installing bat..."
+echo "Installing Alfred..."
+brew install --cask alfred
+echo "Please manually configure Alfred afterwards"
+
+echo "Installing & config bat..."
 brew install bat
+cp -ri ./bat ~/.config/
+
+echo "Installing & config btop..."
+brew install btop
+cp -ri ./btop ~/.config/
+
+echo "Installing & config chrome..."
+brew install --cask google-chrome
+echo "Please manually configure chrome afterwards"
+
 
 echo "Installing bat..."
 brew install btop
