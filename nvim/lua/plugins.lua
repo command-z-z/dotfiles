@@ -20,7 +20,11 @@ return require("lazy").setup(
         dependencies = {"nvim-tree/nvim-web-devicons", opt = true}
     },
     -- bufferline 
-    {'akinsho/bufferline.nvim', version = "v3.*", dependencies = 'nvim-tree/nvim-web-devicons'},
+    {
+        'akinsho/bufferline.nvim',
+        version = "v3.*",
+        dependencies = 'nvim-tree/nvim-web-devicons'
+    },
     -- notify
     {
         "folke/noice.nvim",
@@ -31,15 +35,18 @@ return require("lazy").setup(
     },
     -- theme
     'shaunsingh/nord.nvim',
-    { "catppuccin/nvim", name = "catppuccin" },
+    {
+        "catppuccin/nvim",
+        name = "catppuccin"
+    },
     -- ranger
     "kevinhwang91/rnvimr",
     -- file management
     {
         "Shougo/defx.nvim",
         dependencies = {
-            "kristijanhusak/defx-icons", -- dexf fill management
-            "t9md/vim-choosewin" -- choose windows 
+            "kristijanhusak/defx-icons", -- dexf icon
+            "t9md/vim-choosewin" --windows choose 
         }
     },
     --markdown preview
@@ -63,13 +70,13 @@ return require("lazy").setup(
             "hrsh7th/cmp-path", --for path start with /
             "hrsh7th/cmp-emoji", --for emoji start with :
         }
-    },
+    }, 
     -- code snippets
     {
         "L3MON4D3/LuaSnip",
         dependencies = {
             "saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
-            "rafamadriz/friendly-snippets" -- snippets
+            "rafamadriz/friendly-snippets" --代码段合集
         },
     },
     -- lsp improve 
@@ -131,6 +138,7 @@ return require("lazy").setup(
     "mfussenegger/nvim-dap-python",
     "rcarriga/nvim-dap-ui",
     "theHamsta/nvim-dap-virtual-text",
-    -- ui
-    "MunifTanjim/nui.nvim"
+    -- github
+    "zbirenbaum/copilot.lua",
+    "zbirenbaum/copilot-cmp",
 })
