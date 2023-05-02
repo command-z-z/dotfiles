@@ -107,7 +107,7 @@ brew install --cask wezterm
 ```
 
 <details>
-<summary><b>Load More</b> <span style="font-size:14px;">(Click to expend) </span> </summary>
+<summary><b>More Packages</b> <span style="font-size:14px;">(Click to expend) </span> </summary>
 
 #### ✍️ Fonts
 
