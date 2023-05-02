@@ -97,34 +97,90 @@ This config folder include all my environment in My OS(Just cherry pick the piec
 - System resource monitor [`btop`](https://github.com/aristocratos/btop)
 - Cat with syntax highlighting and Git integration [`bat`](https://github.com/sharkdp/bat)
 
-### 💡 Tutorial
-
-And i will also write some tutorial in my blog(Live in Terminal Series).
-
-- [1.which Terminal is suitable for you?](./tutorial/1.which%20Terminal%20is%20suitable%20for%20you%3F.md)
-- []()
-
 ### 🔨 Dependencies
 #### 📦 Packages
+
 ``` bash
-brew install iTerm2
 brew install --cask kitty
-brew tap wez/wezterm
-brew install --cask wez/wezterm/wezterm
+brew install --cask iterm2
+brew install --cask wezterm
 ```
+
+<details>
+<summary><b>Load More</b> <span style="font-size:14px;">(Click to expend) </span> </summary>
+
 #### ✍️ Fonts
+
 ```
-# 安装HackNerdFont
 brew tap homebrew/cask-fonts
 brew install --cask font-hack-nerd-font
-
-# 安装JetBrainsMono
 brew tap homebrew/cask-fonts
 brew install --cask font-jetbrains-mono
-
-# 一键安装(仅验证ubuntu)
 bash ubuntu_install.sh
 ```
+
+#### 🐚 zsh
+
+```
+brew install ranger
+brew install lsd
+brew install fzf
+brew install starship
+brew install zsh
+sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+#### 🎵 Music
+
+```
+brew install --cask background-music
+brew install cava
+brew install --cask spotify
+brew install khanhas/tap/spicetify-cli
+brew install spotify-tui
+```
+
+#### 🦇 Yabai & skhd 
+
+```
+brew install koekeishiya/formulae/yabai
+brew install koekeishiya/formulae/skhd
+```
+
+#### 🌥️sSktchybar
+
+```
+brew tap FelixKratz/formulae
+brew install sketchybar
+brew install jq
+brew install gh
+brew install switchaudio-osx
+brew install --cask sf-symbols
+curl -L https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v1.0.4/sketchybar-app-font.ttf -o $HOME/Library/Fonts/sketchybar-app-font.ttf
+```
+
+#### 🤿 Neovim & Tmux
+
+```
+brew install llvm
+brew install ripgrep
+brew install neovim
+brew install tmux
+```
+
+#### Other 
+
+```
+brew install --cask alfred
+brew install bat
+brew install btop
+brew install lazygit
+brew install neofetch
+brew install --cask qutebrowser
+```
+
+</details>
+
 ### 🚀 Manual Installation
 
 1.Clone this repository.
@@ -133,9 +189,13 @@ bash ubuntu_install.sh
 git clone https://github.com/command-z-z/dotfiles
 ```
 
-2.Install the required software(see [Dependencies](#-dependencies)).
+2.See my `install.sh` to learn more about my config.
 
-3.See my tutorial to learn more about my config.
+3.Install the required software(see [Dependencies](#-dependencies)) or run `install.sh` script.
+
+```
+./install.sh
+```
 
 4.Just copy the piece of code you really want.
 
