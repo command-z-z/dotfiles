@@ -1,5 +1,5 @@
 # array中换成你要安装的字体的文件名
-array=(HackNerdFont JetBrainsMono OperatorMono SFMono-Nerd-Font-Ligaturized)
+array=(HackNerdFont JetBrainsMono OperatorMono)
 current_dir=`pwd`
 for font in ${array[@]}
 do
