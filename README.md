@@ -116,9 +116,7 @@ brew tap homebrew/cask-fonts
 brew install --cask font-hack-nerd-font
 brew tap homebrew/cask-fonts
 brew install --cask font-jetbrains-mono
-bash ubuntu_install.sh
 ```
-
 #### 🐚 zsh
 
 ```
@@ -129,7 +127,6 @@ brew install starship
 brew install zsh
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
-
 #### 🎵 Music
 
 ```
@@ -139,14 +136,12 @@ brew install --cask spotify
 brew install khanhas/tap/spicetify-cli
 brew install spotify-tui
 ```
-
 #### 🦇 Yabai & skhd 
 
 ```
 brew install koekeishiya/formulae/yabai
 brew install koekeishiya/formulae/skhd
 ```
-
 #### 🌥️sSktchybar
 
 ```
@@ -158,7 +153,6 @@ brew install switchaudio-osx
 brew install --cask sf-symbols
 curl -L https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v1.0.4/sketchybar-app-font.ttf -o $HOME/Library/Fonts/sketchybar-app-font.ttf
 ```
-
 #### 🤿 Neovim & Tmux
 
 ```
@@ -167,7 +161,6 @@ brew install ripgrep
 brew install neovim
 brew install tmux
 ```
-
 #### Other 
 
 ```
