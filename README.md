@@ -142,7 +142,7 @@ brew install spotify-tui
 brew install koekeishiya/formulae/yabai
 brew install koekeishiya/formulae/skhd
 ```
-#### 🌥️sSktchybar
+#### 🌥️ Sketchybar
 
 ```
 brew tap FelixKratz/formulae
