@@ -9,11 +9,11 @@ zen_on() {
              --set separator drawing=off \
              --set front_app drawing=off \
              --set volume_alias drawing=off \
+             --set battery drawing=off \
              --set spotify.anchor drawing=off \
              --set spotify.play updates=off \
              --set brew drawing=off \
-             --set divider drawing=off \
-             --bar padding_left=18
+             --set wifi.alias drawing=off
 }
 
 zen_off() {
@@ -25,10 +25,10 @@ zen_off() {
              --set front_app drawing=on \
              --set system.yabai drawing=on \
              --set volume_alias drawing=on \
+             --set battery drawing=on \
              --set spotify.play updates=on \
              --set brew drawing=on \
-             --set divider drawing=on \
-             --bar padding_left=7
+             --set wifi.alias drawing=on
 }
 
 if [ "$1" = "on" ]; then

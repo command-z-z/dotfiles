@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 source "$HOME/.config/sketchybar/colors.sh" # Loads all defined colors
 source "$HOME/.config/sketchybar/icons.sh" # Loads all defined icons
@@ -24,8 +24,8 @@ sketchybar --bar     height=39                                         \
                      shadow=on                                         \
                      position=top                                      \
                      sticky=on                                         \
-                     padding_right=7                                   \
-                     padding_left=7                                    \
+                     padding_right=10                                  \
+                     padding_left=10                                   \
                      corner_radius=9                                   \
                      y_offset=10                                       \
                      margin=10                                         \
@@ -41,12 +41,12 @@ sketchybar --bar     height=39                                         \
                      label.color=$LABEL_COLOR                          \
                      label.padding_left=$PADDINGS                      \
                      label.padding_right=$PADDINGS                     \
-                     background.padding_right=$PADDINGS                \
-                     background.padding_left=$PADDINGS                 \
-                     background.height=26                              \
+                     padding_right=$PADDINGS                           \
+                     padding_left=$PADDINGS                            \
+                     background.height=30                              \
                      background.corner_radius=9                        \
                      popup.background.border_width=2                   \
-                     popup.background.corner_radius=11                 \
+                     popup.background.corner_radius=9                  \
                      popup.background.border_color=$POPUP_BORDER_COLOR \
                      popup.background.color=$POPUP_BACKGROUND_COLOR    \
                      popup.background.shadow.drawing=on
@@ -63,8 +63,9 @@ source "$ITEM_DIR/spotify.sh"
 source "$ITEM_DIR/calendar.sh"
 source "$ITEM_DIR/brew.sh"
 source "$ITEM_DIR/github.sh"
+source "$ITEM_DIR/wifi.sh"
+source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/volume.sh"
-source "$ITEM_DIR/divider.sh"
 source "$ITEM_DIR/cpu.sh"
 
 # Forcing all item scripts to run (never do this outside of sketchybarrc)
